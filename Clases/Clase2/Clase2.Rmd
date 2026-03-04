@@ -1,0 +1,59 @@
+---
+title: "Estadística Descriptiva. Medidas de Tendencia Central y dispersión."
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    theme: united
+---
+
+#### **1. Instalar paquetes.**
+R viene con funciones básicas instaladas ("base R"), pero la verdadera potencia reside en los paquetes externos. Para usarlos, seguimos dos pasos: **instalarlos** (una sola vez en tu computadora, mediante la función **install.packages("nombre_del_paquete")**) y **cargarlos** (cada vez que abras un nuevo script, mediante la función **library("nombre_del_paquete")**).
+
+```{r,eval=FALSE}
+#Instalar paquete por única vez. Estos son algunos que usaremos esta y la siguientes clases
+install.packages("tidyverse") #El nombre del paquete debe estar entre comillas
+install.packages("readxl")
+install.packages("dplyr")
+
+```
+
+```{r}
+#Cargar paquete cada vez que abras una sesión nueva de RStudio. 
+library(readxl) #En este caso el nombre del paquete funciona con y sin comillas
+library(tidyverse)
+library(dplyr)
+```
+
+---
+
+#### **2. Preparación de datos.**
+Importamos nuestros datos mediante el botón **import** o bien mediante la función read_excel() del paquete **readxl**. En este caso trabajaremos con la base de datos `Tabla_camelida.xlsx`. 
+
+```{r}
+camelidos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ArqCuantitativa2026/datos/Tabla camelida.xlsx")
+camelidos
+```
+
+---
+
+#### **3. Filtrado de datos.**
+A menudo necesitamos aislar datos específicos. Para esto, usaremos la función **filter()** junto al operador pipe **(%>%)** disponibles en el paquete **tidyverse**, que funciona como un "entonces": "toma los datos, y luego fíltralos".
+En este caso haremos el ejercicio de filtrar solo los datos provenientes del Taxón llamas. Tanto las variables como los datos a seleccionar deben ser escritos **tal cual como están en la base de datos original**.
+
+```{r}
+# Creamos un nuevo dataframe solo con los datos de LLAMA
+llama <- camelidos %>% filter(Taxon == "LLAMA")
+
+# Verificamos el resultado
+llama
+```
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+  
+  <a href="" class="btn btn-default">← Clase Anterior</a>
+  <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
+  <a href="Clase2.html" class="btn btn-default">Siguiente Clase →</a>
+
+</div>
