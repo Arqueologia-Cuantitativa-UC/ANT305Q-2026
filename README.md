@@ -14,7 +14,7 @@ Si deseas explorar los archivos fuente o descargar los datos, el repositorio est
 * `index.Rmd` / `index.html`: Archivos raíz que generan el índice del curso.
 * `Clases/`: Esta carpeta está subdividida por cada sesión lectiva (ej. `Clase1/`, `Clase2/`). Dentro de cada una encontrarás todo el material específico de esa sesión:
   * **Scripts de código:**
-    * Archivos `.R`: Contienen únicamente código puro de R. Son ideales para ejecutar procesos directos sin distracciones.
+    * Archivos `.R`: Contienen únicamente código puro de R. Son ideales para ejecutar procesos directos.
     * Archivos `.Rmd` (R Markdown): Combinan bloques de código con texto explicativo, apuntes teóricos y resultados visuales.
   * **Presentaciones:** Las diapositivas utilizadas durante las clases teóricas.
   * **Datos (`.xlsx` o `.csv`):** Las bases de datos específicas necesarias para resolver los ejercicios prácticos de ese día.
