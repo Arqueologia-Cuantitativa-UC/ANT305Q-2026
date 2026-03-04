@@ -127,6 +127,20 @@ df_final <- as.data.frame(matriz_ejemplo)
 df_final
 ```
 
+---
+
+#### **8. Ejercicio práctico**
+A continuación, pondremos en práctica los conceptos revisados. Crea un nuevo script en R y escribe el código necesario para resolver los siguientes ejercicios:
+
+1. Crear un vector con tu nombre que contenga los números 20, 21, 22, 23, 24 y 25.
+2. Crear un vector con tu segundo apellido que contenga las letras "d", "e", "f", "g", "h", "i".
+3. Crear un tercer vector (con un nombre a tu elección) en base al vector de tu nombre y al vector de tu segundo apellido.
+4. Multiplicar el vector con tu nombre por 7.
+5. Crear una secuencia numérica del 35 al 77 (35:77).
+6. Crear una matriz del 1 al 16 con 4 columnas y 4 filas.
+7. Crear un data frame con la misma información que utilizaste para los vectores de tu nombre y apellido.
+
+
 <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
   
   <a href="" class="btn btn-default">← Clase Anterior</a>
