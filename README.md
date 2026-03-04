@@ -1,6 +1,6 @@
 # Arqueología Cuantitativa (ANT305Q) - 2026
 
-Bienvenidas y bienvenidos al repositorio oficial del curso **Arqueología Cuantitativa (ANT305Q)**
+Bienvenidxs al repositorio oficial del curso **Arqueología Cuantitativa (ANT305Q)**
 
 Este espacio contiene todos los materiales de apoyo, guías prácticas y scripts en R utilizados durante las sesiones de clases.
 
