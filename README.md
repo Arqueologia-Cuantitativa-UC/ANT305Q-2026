@@ -19,4 +19,5 @@ Si deseas explorar los archivos fuente o descargar los datos, el repositorio est
 También puedes accedeer directamente a las clases a través de estos enlaces:
 
 [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase1/Clase1.html)
+
 [SIGUIENTES CLASES PENDIENTES]
