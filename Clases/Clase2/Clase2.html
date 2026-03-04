@@ -11,7 +11,7 @@
 
 
 
-<title>Clase 1. Introducción a la Arqueología Cuantitativa. Conceptos Básicos.</title>
+<title>Estadística Descriptiva. Medidas de Tendencia Central y dispersión.</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1483,169 +1483,108 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">Clase 1. Introducción a la Arqueología
-Cuantitativa. Conceptos Básicos.</h1>
+<h1 class="title toc-ignore">Estadística Descriptiva. Medidas de
+Tendencia Central y dispersión.</h1>
 
 </div>
 
 
-<div id="operaciones-básicas." class="section level4">
-<h4><strong>1. Operaciones básicas.</strong></h4>
-<p>Lo primero que podemos hacer en RStudio es utilizarlo como
-calculadora, para esto simplemente debemos usar símbolo que
-corresponda.</p>
-<pre class="r"><code>10+10</code></pre>
-<pre><code>## [1] 20</code></pre>
-<pre class="r"><code>10-5</code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>5*8</code></pre>
-<pre><code>## [1] 40</code></pre>
-<pre class="r"><code>25/5</code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>sqrt(144)</code></pre>
-<pre><code>## [1] 12</code></pre>
-<pre class="r"><code>12**2</code></pre>
-<pre><code>## [1] 144</code></pre>
+<div id="instalar-paquetes." class="section level4">
+<h4><strong>1. Instalar paquetes.</strong></h4>
+<p>R viene con funciones básicas instaladas (“base R”), pero la
+verdadera potencia reside en los paquetes externos. Para usarlos,
+seguimos dos pasos: <strong>instalarlos</strong> (una sola vez en tu
+computadora, mediante la función
+<strong>install.packages(“nombre_del_paquete”)</strong>) y
+<strong>cargarlos</strong> (cada vez que abras un nuevo script, mediante
+la función <strong>library(“nombre_del_paquete”)</strong>).</p>
+<pre class="r"><code>#Instalar paquete por única vez. Estos son algunos que usaremos esta y la siguientes clases
+install.packages(&quot;tidyverse&quot;) #El nombre del paquete debe estar entre comillas
+install.packages(&quot;readxl&quot;)
+install.packages(&quot;dplyr&quot;)</code></pre>
+<pre class="r"><code>#Cargar paquete cada vez que abras una sesión nueva de RStudio. 
+library(readxl) #En este caso el nombre del paquete funciona con y sin comillas
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.2.0     ✔ readr     2.2.0
+## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+## ✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+## ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+## ✔ purrr     1.2.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
 <hr />
 </div>
-<div id="crear-un-vector." class="section level4">
-<h4><strong>2. Crear un vector.</strong></h4>
-<p>Un vector en R es la estructura de datos más básica, consistente en
-una secuencia ordenada de elementos de un mismo tipo. Para crearlo
-utilizamos la función <strong>c()</strong> que significa “concatenar” o
-“combinar”. El vector debe tener un nombre conocido y no tan genérico
-para que sea fácil de recordar, de escribir y no se confunda con otros
-que puedas estar usando paralelamente. Además, debe estar acompañado del
-signo <strong>&lt;-</strong> que sirve para indicar todo lo que
-contendrá el vector.</p>
-<pre class="r"><code># Vector de caracteres
-x &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
-x</code></pre>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
-<pre class="r"><code># Vector numérico
-hola &lt;- c(1, 2, 3, 4, 5)
-hola</code></pre>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div id="preparación-de-datos." class="section level4">
+<h4><strong>2. Preparación de datos.</strong></h4>
+<p>Importamos nuestros datos mediante el botón <strong>import</strong> o
+bien mediante la función read_excel() del paquete
+<strong>readxl</strong>. En este caso trabajaremos con la base de datos
+<code>Tabla_camelida.xlsx</code>.</p>
+<pre class="r"><code>camelidos &lt;- read_excel(&quot;~/Desktop/work/0_Cuantitativa_2026/ArqCuantitativa2026/datos/Tabla camelida.xlsx&quot;)
+camelidos</code></pre>
+<pre><code>## # A tibble: 33 × 3
+##    Taxon Largo Ancho
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 LLAMA  80.3  35.4
+##  2 LLAMA  71.6  21.2
+##  3 LLAMA  70.9  22.0
+##  4 LLAMA  70.6  22.3
+##  5 LLAMA  69.1  22.7
+##  6 LLAMA  68.7  20.8
+##  7 LLAMA  67.8  20  
+##  8 LLAMA  66.6  21  
+##  9 LLAMA  65.9  20.3
+## 10 LLAMA  65.8  21.2
+## # ℹ 23 more rows</code></pre>
 <hr />
 </div>
-<div id="operaciones-con-vectores." class="section level4">
-<h4><strong>3. Operaciones con vectores.</strong></h4>
-<p>Una de las caracteristicas más potentes de R es la
-<strong>vectorizacion</strong>. Esto significa que cualquier operación
-aritmética que apliquemos a un vector, se realizará automáticamente para
-cada uno de los elementos que contiene, sin necesidad de hacerlo uno por
-uno.</p>
-<pre class="r"><code># Sumar o restar un valor constante a todos los elementos
-hola + 1</code></pre>
-<pre><code>## [1] 2 3 4 5 6</code></pre>
-<pre class="r"><code># Crear dos vectores nuevos
-mi_vector_1 &lt;- c(1, 2, 3)
-mi_vector_2 &lt;- c(4, 5, 6)
+<div id="filtrado-de-datos." class="section level4">
+<h4><strong>3. Filtrado de datos.</strong></h4>
+<p>A menudo necesitamos aislar datos específicos. Para esto, usaremos la
+función <strong>filter()</strong> junto al operador pipe
+<strong>(%&gt;%)</strong> disponibles en el paquete
+<strong>tidyverse</strong>, que funciona como un “entonces”: “toma los
+datos, y luego fíltralos”. En este caso haremos el ejercicio de filtrar
+solo los datos provenientes del Taxón llamas. Tanto las variables como
+los datos a seleccionar deben ser escritos <strong>tal cual como están
+en la base de datos original</strong>.</p>
+<pre class="r"><code># Creamos un nuevo dataframe solo con los datos de LLAMA
+llama &lt;- camelidos %&gt;% filter(Taxon == &quot;LLAMA&quot;)
 
-# Operar entre vectores (elemento por elemento)
-mi_vector_1 + mi_vector_2</code></pre>
-<pre><code>## [1] 5 7 9</code></pre>
-<pre class="r"><code># También podemos &quot;pegar&quot; o juntar varios vectores en uno solo
-mi_vector_3 &lt;- c(mi_vector_1, mi_vector_2)
-mi_vector_3</code></pre>
-<pre><code>## [1] 1 2 3 4 5 6</code></pre>
-<hr />
-</div>
-<div id="secuencias-numéricas." class="section level4">
-<h4><strong>4. Secuencias numéricas.</strong></h4>
-<p>R permite generar listas de números ordenados utilizando el operador
-<strong>:</strong>.</p>
-<pre class="r"><code># Secuencia simple del 1 al 10
-1:10</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<pre class="r"><code># Secuencia en orden inverso
-10:1</code></pre>
-<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
-<pre class="r"><code># Vector con una secuencia del 1 al 10
-secuencia &lt;- c(1:10)</code></pre>
-<hr />
-</div>
-<div id="matrices." class="section level4">
-<h4><strong>5. Matrices.</strong></h4>
-<p>Una matriz es una estructura de datos bidimensional (organizada en
-filas y columnas). A diferencia de los vectores, tienen dos dimensiones,
-pero mantienen la regla de que todos sus elementos deben ser del mismo
-tipo (generalmente números).</p>
-<pre class="r"><code># Crear una matriz a partir de una secuencia de 1 al 12
-# Podemos definir el número de filas (nrow) y columnas (ncol)
-matrix(1:12, nrow=3, ncol=4)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    4    7   10
-## [2,]    2    5    8   11
-## [3,]    3    6    9   12</code></pre>
-<pre class="r"><code># O cambiar la orientación a 4 filas y 3 columnas
-matrix(1:12, nrow=4, ncol=3)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    5    9
-## [2,]    2    6   10
-## [3,]    3    7   11
-## [4,]    4    8   12</code></pre>
-<pre class="r"><code># También podemos realizar operaciones matemáticas directas sobre toda la matriz
-mi_matriz &lt;- matrix(1:9, nrow=3, ncol=3)
-mi_matriz * 2</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    2    8   14
-## [2,]    4   10   16
-## [3,]    6   12   18</code></pre>
-<pre class="r"><code>mi_matriz^3</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1   64  343
-## [2,]    8  125  512
-## [3,]   27  216  729</code></pre>
-<hr />
-</div>
-<div id="data-frames." class="section level4">
-<h4><strong>6. Data Frames.</strong></h4>
-<p>El Data Frame esla estructura más importante en arqueología. A
-diferencia de la matriz, un Data Frame permite que cada columna tenga un
-tipo de dato diferente (por ejemplo: una columna con nombres de sitios,
-otra con tipos de cerámica, etc.). Es lo más parecido a una tabla de
-Excel.</p>
-<pre class="r"><code># Crearemos un set de datos (dataset) con 3 columnas
-mi_dataframe &lt;- data.frame(
-  &quot;secuencia&quot; = 1:4, 
-  &quot;letra&quot; = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;), 
-  &quot;numero&quot; = c(1.2, 3.4, 4.5, 5.6)
-)
-
-mi_dataframe</code></pre>
-<pre><code>##   secuencia letra numero
-## 1         1     a    1.2
-## 2         2     b    3.4
-## 3         3     c    4.5
-## 4         4     d    5.6</code></pre>
-<pre class="r"><code># Podemos consultar información básica del Data Frame
-length(mi_dataframe) # Nos da el número de columnas</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>names(mi_dataframe)  # Nos da los nombres de las columnas</code></pre>
-<pre><code>## [1] &quot;secuencia&quot; &quot;letra&quot;     &quot;numero&quot;</code></pre>
-<hr />
-</div>
-<div id="coerción-de-datos." class="section level4">
-<h4><strong>7. Coerción de datos.</strong></h4>
-<p>En R, “coercionar” significa forzar un objeto de un tipo a otro. Es
-muy común, por ejemplo, convertir una matriz de números en un Data Frame
-para poder procesarlo con herramientas estadísticas más avanzadas.</p>
-<pre class="r"><code># Creamos una matriz simple
-matriz_ejemplo &lt;- matrix(1:12, ncol=4)
-
-# La transformamos a Data Frame
-df_final &lt;- as.data.frame(matriz_ejemplo)
-
-df_final</code></pre>
-<pre><code>##   V1 V2 V3 V4
-## 1  1  4  7 10
-## 2  2  5  8 11
-## 3  3  6  9 12</code></pre>
+# Verificamos el resultado
+llama</code></pre>
+<pre><code>## # A tibble: 20 × 3
+##    Taxon Largo Ancho
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 LLAMA  80.3  35.4
+##  2 LLAMA  71.6  21.2
+##  3 LLAMA  70.9  22.0
+##  4 LLAMA  70.6  22.3
+##  5 LLAMA  69.1  22.7
+##  6 LLAMA  68.7  20.8
+##  7 LLAMA  67.8  20  
+##  8 LLAMA  66.6  21  
+##  9 LLAMA  65.9  20.3
+## 10 LLAMA  65.8  21.2
+## 11 LLAMA  65.1  21.6
+## 12 LLAMA  64.6  19.3
+## 13 LLAMA  64.2  20.0
+## 14 LLAMA  61.5  18.7
+## 15 LLAMA  61.1  20.3
+## 16 LLAMA  60.8  18.8
+## 17 LLAMA  60.6  19.9
+## 18 LLAMA  60.5  18.9
+## 19 LLAMA  56.9  18.8
+## 20 LLAMA  40.2  15.2</code></pre>
 <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
-<p><a href class="btn btn-default">← Clase Anterior</a>
+<p>&lt;a href=““../Clase1/Clase1.html”” class=“btn btn-default”&gt;←
+Clase Anterior</a>
 <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
-<a href="../Clase2/Clase2.html" class="btn btn-default">Siguiente Clase
+<a href="../Clase3/Clase3.html" class="btn btn-default">Siguiente Clase
 →</a></p>
 </div>
 </div>
