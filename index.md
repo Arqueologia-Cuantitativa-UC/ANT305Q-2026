@@ -11,7 +11,7 @@ output:
 
 ### Temario y Clases
 
-* [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](Clase1.html)
+* [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](Clases/Clase1/Clase1.html)
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](Clase2.html)
 * [Clase 3: Visualización de datos: gráficos. La distribución normal.](Clase3.html)
 * [Clase 4: Categorías y proporciones.](Clase4.html)
