@@ -29,7 +29,7 @@ library(dplyr)
 ---
 
 #### **2. Preparación de datos.**
-Importamos nuestros datos mediante el botón `import` o bien mediante la función read_excel() del paquete `readxl`. En este caso trabajaremos con la base de datos `Tabla_camelida.xlsx`, la cual puedes descargar desde el repositorio del curso o haciendo click [aquí](https://github.com/Arqueologia-Cuantitativa-UC/ANT305Q-2026/blob/main/Clases/Clase2/Tabla_camelida.xlsx?raw=true`)
+Importamos nuestros datos mediante el botón `import` o bien mediante la función read_excel() del paquete `readxl`. En este caso trabajaremos con la base de datos `Tabla_camelida.xlsx`, la cual puedes encontrar el repositorio del curso o descargar directamente haciendo click [aquí](https://github.com/Arqueologia-Cuantitativa-UC/ANT305Q-2026/blob/main/Clases/Clase2/Tabla%20camelida.xlsx?raw=true).
 
 ```{r}
 camelidos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase2/Tabla camelida.xlsx")
