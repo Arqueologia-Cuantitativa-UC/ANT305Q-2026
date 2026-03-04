@@ -24,6 +24,6 @@ Si deseas explorar los archivos fuente o descargar los datos, el repositorio est
 También puedes acceder directamente a la versión web de cada clase a través de estos enlaces:
 
 * [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase1/Clase1.html)
-* [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.]([Clases/Clase2/Clase2.html](https://mayorgarmijo.github.io/ArqCuantitativa2026/Clase2.html))
+* [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](https://mayorgarmijo.github.io/ArqCuantitativa2026/Clase2.html)
 
 * [SIGUIENTES CLASES PENDIENTES]
