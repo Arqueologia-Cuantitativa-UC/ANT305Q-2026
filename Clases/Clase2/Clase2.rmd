@@ -1,5 +1,5 @@
 ---
-title: "Estadística Descriptiva. Medidas de Tendencia Central y dispersión."
+title: "Clase 2. Estadística Descriptiva. Medidas de Tendencia Central y dispersión."
 output: 
   html_document:
     toc: true
