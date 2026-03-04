@@ -2,8 +2,7 @@
 title: "Índice"
 author: "Arqueología Cuantitativa - 2026"
 output: 
-  html_document: 
-    keep_md: true
+  html_document:
     theme: united
 ---
 
