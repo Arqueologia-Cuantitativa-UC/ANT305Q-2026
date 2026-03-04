@@ -23,7 +23,7 @@ sqrt(144)
 ---
 
 #### **2. Crear un vector.** 
-Un vector en R es la estructura de datos más básica, consistente en una secuencia ordenada de elementos de un mismo tipo. Para crearlo utilizamos la función **c()** que significa "concatenar" o "combinar". El vector debe tener un nombre conocido y no tan genérico para que sea fácil de recordar, de escribir y no se confunda con otros que puedas estar usando paralelamente. Además, debe estar acompañado del signo **<-** que sirve para indicar todo lo que contendrá el vector.
+Un vector en R es la estructura de datos más básica, consistente en una secuencia ordenada de elementos de un mismo tipo. Para crearlo utilizamos la función `c()` que significa "concatenar" o "combinar". El vector debe tener un nombre conocido y no tan genérico para que sea fácil de recordar, de escribir y no se confunda con otros que puedas estar usando paralelamente. Además, debe estar acompañado del signo `<-` que sirve para indicar todo lo que contendrá el vector.
 
 ```{r}
 # Vector de caracteres
@@ -38,7 +38,7 @@ hola
 ---
 
 #### **3. Operaciones con vectores.** 
-Una de las caracteristicas más potentes de R es la **vectorizacion**. Esto significa que cualquier operación aritmética que apliquemos a un vector, se realizará automáticamente para cada uno de los elementos que contiene, sin necesidad de hacerlo uno por uno.
+Una de las caracteristicas más potentes de R es la `vectorizacion.` Esto significa que cualquier operación aritmética que apliquemos a un vector, se realizará automáticamente para cada uno de los elementos que contiene, sin necesidad de hacerlo uno por uno.
 
 ```{r}
 # Sumar o restar un valor constante a todos los elementos
@@ -59,7 +59,7 @@ mi_vector_3
 ---
 
 #### **4. Secuencias numéricas.** 
-R permite generar listas de números ordenados  utilizando el operador **:**.
+R permite generar listas de números ordenados  utilizando el operador `:`.
 
 ```{r}
 # Secuencia simple del 1 al 10
