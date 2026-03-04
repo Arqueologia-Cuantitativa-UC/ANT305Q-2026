@@ -99,6 +99,23 @@ ggplot(data = camelidos, aes(x = Ancho, fill = Taxon)) +
   geom_histogram(binwidth = 1, color = "black")
 ```
 
+---
+
+#### **6. Trabajo en Clases 2.**
+Utilizando la base de datos `Tabla_camelida.xlsx`, crea un nuevo script y realiza los siguientes ejercicios en R:
+
+1. Explore la variable `Largo` utilizando un histograma (sin filtrar).
+2. Explore la variable `Largo` sólo para el taxón "GUANACO" utilizando un histograma. 
+3. Calcule la media, mediana, máximo, mínimo, 1er y 3er cuartil de la variable `Largo` para el taxón "GUANACO".
+4. Calcule la dispersión media o rango intercuartil (IQR) de la variable `Largo` en "GUANACO".
+5. Calcule la desviación estándar de la variable `Largo` en "GUANACO".
+6. Calcule la varianza de la variable `Largo` en "GUANACO". 
+7. Explore la variable `Ancho` utilizando un histograma (sin filtrar).
+8. Explore la variable `Ancho` sólo para el taxón "GUANACO" utilizando un histograma. 
+9. Calcule la media, mediana, máximo, mínimo, 1er y 3er cuartil de la variable `Ancho` para el taxón "GUANACO".
+10. Calcule la dispersión media o rango intercuartil (IQR) de la variable `Ancho` en "GUANACO".
+11. Calcule la desviación estándar de la variable `Ancho` en "GUANACO".
+12. Calcule la varianza de la variable `Ancho` en "GUANACO".
 
 
 <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
