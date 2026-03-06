@@ -12,7 +12,7 @@ output:
 Lo primero que podemos hacer en RStudio es utilizarlo como calculadora, para esto simplemente debemos usar símbolo que corresponda. 
 
 ```{r}
-10+11
+10+10
 10-5
 5*8
 25/5
