@@ -12,14 +12,4 @@ output:
 
 * [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](Clases/Clase1/Clase1.html)
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](Clases/Clase2/Clase2.html)
-* [Clase 3: Visualización de datos: gráficos. La distribución normal.](Clase3.html)
-* [Clase 4: Categorías y proporciones.](Clase4.html)
-* [Clase 5: Muestreo.](Clase5.html)
-* [Clase 6: Rango de error y niveles de confianza.](Clase6.html)
-* [Clase 7: Test de hipótesis, t-test.](Clase7.html)
-* [Clase 8: ANOVA](Clase8.html)
-* [Clase 9: Tests de Shapiro-Wilk y test no paramétricos (Mann-Whitney Wilcoxon y Kruskal-Wallis).](Clase9.html)
-* [Clase 10: Chi cuadrado.](Clase10.html)
-* [Clase 11: Regresión Lineal.](Clase11.html)
-* [Clase 12: Correlación de Pearson y Spearman.](Clase12.html)
-* [Clase 13: Análisis de Componentes Principales. Práctico: PCA en R.](Clase13.html)
+* [SIGUIENTES CLASES PENDIENTES]
