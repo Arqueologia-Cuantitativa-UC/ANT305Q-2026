@@ -19,6 +19,7 @@ Si deseas explorar los archivos fuente o descargar los datos, el repositorio est
   * **Presentaciones:** Las diapositivas utilizadas durante las clases teóricas.
   * **Datos (`.xlsx` o `.csv`):** Las bases de datos específicas necesarias para resolver los ejercicios prácticos de ese día.
   * **Páginas web (`.html`):** Los apuntes interactivos generados a partir de los archivos `.Rmd` para leer directamente en el navegador. (No es necesario descargarlos, son para el funcionamiento de la web).
+* `Documentos/`:Esta carpeta contiene documentación del curso como el programa y cronograma.
 
 ## 🔗 Links directos por clase
 También puedes acceder directamente a la versión web de cada clase a través de estos enlaces:
