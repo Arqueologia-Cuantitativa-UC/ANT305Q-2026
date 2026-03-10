@@ -27,3 +27,6 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase2/Clase2.html)
 
 * [SIGUIENTES CLASES PENDIENTES]
+
+## 🔗 Link al drive del curso
+https://drive.google.com/drive/folders/1H82rzCpWWJvTaZK0eS9GHm7pNbhCI5g0?usp=sharing
