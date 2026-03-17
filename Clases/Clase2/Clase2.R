@@ -3,30 +3,30 @@
 # 1. Instalar paquetes. ---------------------------------------------------
 # R viene con funciones básicas instaladas ("base R"), pero la verdadera potencia reside en los paquetes externos. Para usarlos, seguimos dos pasos: instalarlos (una sola vez en tu computadora, mediante la función install.packages("nombre_del_paquete")) y cargarlos (cada vez que abras un nuevo script, mediante la función library("nombre_del_paquete")).
 
-# Instalar paquete por única vez. Estos son algunos que usaremos esta y la siguientes clases. Quítale el "#" a las siguientes líneas si necesitas instalarlos por primera vez:
-# install.packages("tidyverse") 
-# install.packages("readxl")
-# install.packages("dplyr")
+# Instalar paquete por única vez. Estos son algunos que usaremos esta y la siguientes clases.
+install.packages("tidyverse") 
+install.packages("readxl")
+install.packages("dplyr")
 
 # Cargar paquete cada vez que abras una sesión nueva de RStudio. 
-library(readxl) 
+library(readxl)
 library(tidyverse)
 library(dplyr)
-
 
 # 2. Preparación de datos. ------------------------------------------------
 # Importamos nuestros datos mediante el botón import o bien mediante la función read_excel() del paquete readxl. En este caso trabajaremos con la base de datos Tabla_camelida.xlsx.
 # Para utilizar las función read_excel debes escribir la ruta exacta del archivo que quieres cargar. en mi caso es:
 
-# camelidos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase2/Tabla camelida.xlsx") #edita este campo y borra el # al inicio para cargar la tabla
+# camelidos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase2/Tabla camelida.xlsx")
 camelidos
-
+view(camelidos)
 
 # 3. Filtrado de datos. ---------------------------------------------------
 # A menudo necesitamos aislar datos específicos. Para esto, usaremos la función filter() junto al operador pipe (%>%) disponibles en el paquete tidyverse, que funciona como un "entonces": "toma los datos, y luego fíltralos". En este caso haremos el ejercicio de filtrar solo los datos provenientes del Taxón llamas. Tanto las variables como los datos a seleccionar deben ser escritos tal cual como están en la base de datos original.
 
 # Creamos un nuevo dataframe solo con los datos de LLAMA
-llama <- camelidos %>% filter(Taxon == "LLAMA")
+llama <- camelido %>% filter(Taxon == "LLAMA")
+guanaco <- camelidos %>% filter(Taxon == "GUANACO")
 
 # Verificamos el resultado
 llama
@@ -54,4 +54,19 @@ var(llama$Ancho)      # Varianza
 # 5. Visualización de datos: Histograma. ----------------------------------
 # Para explorar visualmente cómo se distribuyen nuestros datos, crearemos un histograma. Para esto usaremos ggplot2, un paquete especializado en gráficos que ya viene incluido y cargado dentro de tidyverse. 
 
-# Usaremos la función ggplot(). Primero definimos nuestros datos (data = llama), luego en aes() (aesthetics) definimos qué variable irá en el eje X (en este caso, el Ancho). Finalmente, le indicamos el tipo de gráfico con geom_histogram(), donde podemos personalizar el grosor de las barras (
+# Usaremos la función `ggplot()`. Primero definimos nuestros datos (`data = llama`), luego en `aes()` (aesthetics) definimos qué variable irá en el eje X (en este caso, el Ancho). Finalmente, le indicamos el tipo de gráfico con `geom_histogram()`, donde podemos personalizar el grosor de las barras (`binwidth`), el color del borde y el relleno.
+
+# Histograma para el ancho de falange solo de las llamas
+ggplot(data = llama, aes(x = Ancho)) + 
+  geom_histogram(binwidth = 1, color = "black", fill = "white")
+
+#Si queremos ver todos los datos en un mismo gráfico para compararlos, ya no usamos el vector filtrado, sino nuestra base de datos original (camelidos).
+#Para que R diferencie ambos grupos en el gráfico, agregamos el argumento `fill = Taxon` dentro de la función `aes()`. Esto le indica al programa que rellene las barras con colores distintos según la especie.
+#
+
+# Histograma comparativo para toda la base de datos
+ggplot(data = camelidos, aes(x = Ancho, fill = Taxon)) + 
+  geom_histogram(binwidth = 1, color = "black")
+
+
+
