@@ -1742,7 +1742,7 @@ boxplots tradicionales pueden omitir.</p>
   # Capa 2: boxplot compacto
   geom_boxplot(width = 0.1) +
   # Capa 3: puntos individuales (&quot;lluvia&quot;)
-  geom_beeswarm(width = 0.05, alpha = 0.5, color = &quot;blue&quot;, cex = 1.5) +
+  geom_beeswarm(alpha = 0.5, color = &quot;blue&quot;, cex = 1.5) +
   scale_fill_brewer(palette = &quot;Dark2&quot;) +
   scale_y_continuous(limits = c(38, 82), breaks = seq(38, 82, 2)) +
   labs(x = &quot;Taxón&quot;, y = &quot;Largo (mm)&quot;, title = &quot;Largo falange camélidos&quot;) +
