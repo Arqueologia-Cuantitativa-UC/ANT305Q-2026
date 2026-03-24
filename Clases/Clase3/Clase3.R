@@ -56,9 +56,8 @@ ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
 # ggplot2 incluye varios temas predefinidos que cambian la apariencia general del gráfico, especialmente el color del fondo. Algunos ejemplos son: theme_bw(), theme_classic(), theme_dark(), theme_gray(), theme_light(), theme_void().
 
 ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
-  geom_histogram(binwidth = 1) +
+  geom_histogram(binwidth = 1, color = "black") +
   scale_fill_manual(values = c("red", "blue")) +
-  scale_color_manual(values = c("black", "black")) +
   scale_y_continuous(breaks = seq(0, 10, 2)) +
   scale_x_continuous(breaks = seq(14, 36, 2)) +
   labs(x = "Ancho (cm)", y = "Frecuencia", title = "Ancho falange camélidos") +

@@ -71,7 +71,7 @@ ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
 La función `labs()` nos permite cambiar los nombres que aparecen en los ejes y agregar un título al gráfico. Es buena práctica incluir las unidades de medida en las etiquetas de los ejes.
 
 ```{r}
-ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
+ggplot(data= camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
   geom_histogram(binwidth = 1, color = "black") +
   scale_fill_manual(values = c("red", "blue")) +
   scale_y_continuous(breaks = seq(0, 10, 2)) +

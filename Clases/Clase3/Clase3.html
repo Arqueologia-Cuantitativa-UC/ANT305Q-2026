@@ -1564,7 +1564,7 @@ ejemplo, <code>seq(0, 10, 2)</code> generará la secuencia 0, 2, 4, 6, 8,
 <p>La función <code>labs()</code> nos permite cambiar los nombres que
 aparecen en los ejes y agregar un título al gráfico. Es buena práctica
 incluir las unidades de medida en las etiquetas de los ejes.</p>
-<pre class="r"><code>ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
+<pre class="r"><code>ggplot(data= camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
   geom_histogram(binwidth = 1, color = &quot;black&quot;) +
   scale_fill_manual(values = c(&quot;red&quot;, &quot;blue&quot;)) +
   scale_y_continuous(breaks = seq(0, 10, 2)) +
