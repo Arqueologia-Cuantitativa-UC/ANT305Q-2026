@@ -158,7 +158,7 @@ ggplot(data = camelidos, aes(x = Taxon, y = Largo, fill = Taxon)) +
   # Capa 2: boxplot compacto
   geom_boxplot(width = 0.1) +
   # Capa 3: puntos individuales ("lluvia")
-  geom_beeswarm(width = 0.05, alpha = 0.5, color = "blue", cex = 1.5) +
+  geom_beeswarm(alpha = 0.5, color = "blue", cex = 1.5) +
   scale_fill_brewer(palette = "Dark2") +
   scale_y_continuous(limits = c(38, 82), breaks = seq(38, 82, 2)) +
   labs(x = "Taxón", y = "Largo (mm)", title = "Largo falange camélidos") +
