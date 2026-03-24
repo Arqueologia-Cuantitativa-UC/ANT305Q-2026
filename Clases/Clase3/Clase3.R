@@ -37,9 +37,8 @@ ggplot(data = camelidos, aes(x = Ancho, fill = Taxon)) +
 # Podemos definir exactamente qué números aparecen en los ejes usando la función seq(inicio, fin, cada cuántos números). Por ejemplo, seq(0, 10, 2) generará la secuencia 0, 2, 4, 6, 8, 10.
 
 ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
-  geom_histogram(binwidth = 1) +
+  geom_histogram(binwidth = 1, color = "black") +
   scale_fill_manual(values = c("red", "blue")) +
-  scale_color_manual(values = c("black", "black")) +
   scale_y_continuous(breaks = seq(0, 10, 2)) +
   scale_x_continuous(breaks = seq(14, 36, 2))
 
@@ -47,9 +46,8 @@ ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
 # La función labs() nos permite cambiar los nombres que aparecen en los ejes y agregar un título al gráfico. Es buena práctica incluir las unidades de medida en las etiquetas de los ejes.
 
 ggplot(data = camelidos, aes(x = Ancho, fill = Taxon, color = Taxon)) +
-  geom_histogram(binwidth = 1) +
+  geom_histogram(binwidth = 1, color = "black") +
   scale_fill_manual(values = c("red", "blue")) +
-  scale_color_manual(values = c("black", "black")) +
   scale_y_continuous(breaks = seq(0, 10, 2)) +
   scale_x_continuous(breaks = seq(14, 36, 2)) +
   labs(x = "Ancho (cm)", y = "Frecuencia", title = "Ancho falange camélidos")
