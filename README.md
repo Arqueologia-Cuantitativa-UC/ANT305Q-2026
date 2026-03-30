@@ -28,7 +28,7 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 1: Introducción a la Arqueología Cuantitativa. Conceptos Básicos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase1/Clase1.html)
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase2/Clase2.html)
 * [Clase 3: Visualización de datos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase3/Clase3.html)
-* 
+* [Clase 4. Categorías, porcentajes y gráficos de barra.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase4/Clase4.html)
 * [SIGUIENTES CLASES PENDIENTES]
 
 ## 🔗 Link al drive del curso
