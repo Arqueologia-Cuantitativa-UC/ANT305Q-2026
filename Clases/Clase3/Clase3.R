@@ -7,7 +7,6 @@
 install.packages("wesanderson")
 install.packages("ggbeeswarm")
 install.packages("ggdist")
-install.packages("gghalves")
 
 # Cargar paquetes cada vez que abrimos una sesión nueva
 library(tidyverse)

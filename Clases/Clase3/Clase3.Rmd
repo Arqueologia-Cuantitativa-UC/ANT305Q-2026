@@ -17,7 +17,6 @@ Recordemos que los paquetes solo se instalan una vez, pero deben cargarse cada v
 install.packages("wesanderson")
 install.packages("ggbeeswarm")
 install.packages("ggdist")
-install.packages("gghalves")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
