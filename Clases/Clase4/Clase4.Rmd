@@ -1,0 +1,128 @@
+---
+title: "Clase 4. Categorías, porcentajes y gráficos de barra."
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    theme: united
+---
+
+#### **1. Cargar paquetes.**
+
+Trabajaremos principalmente con `ggplot2` (incluido en `tidyverse`) y `readxl` para importar los datos.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+---
+
+#### **2. Importar datos.**
+
+En esta clase trabajaremos con dos bases de datos: `ceramica.xlsx` y `Diametro ceramica.xlsx`. Puedes encontrarlas en el repositorio del curso.
+
+```{r}
+ceramica <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase4/ceramica.xlsx")
+ceramica
+
+diametro_ceramica <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase4/Diametro ceramica.xlsx")
+diametro_ceramica
+```
+
+---
+
+#### **3. Calcular porcentajes de columna.**
+
+Para calcular qué porcentaje representa cada fila dentro de su columna usamos la función `prop.table()`, que calcula proporciones, y luego multiplicamos por 100 para obtener porcentajes.
+
+Primero transformamos nuestra tabla a un `data.frame`, ya que vamos a agregar columnas nuevas con los porcentajes calculados.
+
+```{r}
+# Transformamos a data frame
+data1 <- data.frame(ceramica)
+
+# Calculamos el porcentaje de columna para cada zona geográfica
+data1$porcentCosta     <- prop.table(data1$Costa) * 100
+data1$porcentInterior  <- prop.table(data1$Valle) * 100
+data1$porcentAltiplano <- prop.table(data1$Cordillera) * 100
+
+# Revisamos el resultado: data1 debe incluir las nuevas columnas con porcentajes
+data1
+```
+
+---
+
+#### **4. Crear un nuevo data frame para el gráfico de barras.**
+
+Para poder graficar en `ggplot2` necesitamos que los datos estén en un formato específico: cada fila debe ser una observación. Por eso creamos un nuevo `data.frame` con tres columnas: `Sitio` (zona geográfica), `Categoria` (tipo de cerámica) y `Porcentaje` (el valor calculado).
+
+Usamos la función `rep()` para repetir los nombres de las zonas, y escribimos las categorías y porcentajes en el mismo orden.
+
+```{r}
+data2 <- data.frame(
+  Sitio      = rep(c("Costa", "Interior", "Altiplano"), each = 2),
+  Categoria  = c("Incisa", "Modelada", "Incisa", "Modelada", "Incisa", "Modelada"),
+  Porcentaje = c(48.33, 51.67, 33.33, 66.67, 32.43, 67.57)
+)
+
+# Verificamos que el data frame se haya generado correctamente
+data2
+```
+
+---
+
+#### **5. Gráfico de barras con `geom_bar()`.**
+
+Para crear gráficos de barras usamos la función `geom_bar()`. Como ya tenemos los valores calculados (no queremos que R los cuente), debemos agregar `stat = "identity"`. Para que las barras de cada categoría aparezcan una al lado de la otra usamos `position = position_dodge()`.
+
+```{r}
+ggplot(data = data2, aes(x = Sitio, y = Porcentaje, fill = Categoria)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = c("purple", "blue")) +
+  labs(x = "Zona geográfica", y = "Porcentaje (%)", title = "Cerámica por zona geográfica") +
+  theme_minimal() +
+  theme(text = element_text(size = 12))
+```
+
+---
+
+#### **6. Boxplot de diámetro de borde cerámico por zona.**
+
+Usando la base de datos `Diametro ceramica.xlsx`, podemos comparar la distribución del diámetro del borde de la cerámica incisa entre las distintas zonas geográficas con un boxplot.
+
+```{r}
+ggplot(data = diametro_ceramica, aes(x = Zona, y = Diametro, fill = Zona)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("purple", "lightblue", "yellow3")) +
+  scale_y_continuous(limits = c(0, 26)) +
+  labs(x = "Zona geográfica", y = "Diámetro (cm)", title = "Diámetro borde cerámica incisa por zona") +
+  theme_minimal()
+```
+
+---
+
+#### **7. Trabajo en Clases 4.**
+
+Para esta actividad trabajaremos con las bases de datos `Liticos.xlsx` y `Largo liticos.xlsx`. Puedes encontrarlas en el repositorio del curso.
+
+1. Crea un nuevo `data.frame` a partir de la base de datos `Liticos` y calcula los porcentajes de columna para cada zona geográfica.
+
+2. Crea un nuevo `data.frame` que incluya las columnas `Sitio`, `Categoria` y `Porcentaje`, siguiendo el mismo procedimiento que usamos con la cerámica.
+
+3. Realiza un gráfico de barras usando los datos del nuevo `data.frame`. ¿Qué tipo de punta es más frecuente en el altiplano, costa e interior, respectivamente? ¿Existen diferencias entre zonas? Si fuese así, ¿a qué crees que se deben?
+
+4. Realiza un boxplot con la base de datos `Largo liticos` para comparar cómo se distribuyen los largos de las puntas de obsidiana por zona geográfica. ¿Dónde hay puntas más largas? ¿Dónde hay puntas más pequeñas? ¿Las distribuciones son simétricas o dispersas? ¿Dónde tienden a agruparse los datos en cada boxplot?
+
+
+
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+  
+  <a href="../Clase3/Clase3.html" class="btn btn-default">← Clase Anterior</a>
+  <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
+  <a href="../Clase5/Clase5.html" class="btn btn-default">Siguiente Clase →</a>
+
+</div>
