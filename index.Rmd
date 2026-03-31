@@ -14,4 +14,5 @@ output:
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](Clases/Clase2/Clase2.html)
 * [Clase 3. Visualización de datos](Clases/Clase3/Clase3.html)
 * [Clase 4. Categorías, porcentajes y gráficos de barra](Clases/Clase4/Clase4.html).
+*
 * [SIGUIENTES CLASES PENDIENTES]
