@@ -29,7 +29,10 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 2: Estadística Descriptiva. Medidas de Tendencia Central y dispersión.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase2/Clase2.html)
 * [Clase 3: Visualización de datos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase3/Clase3.html)
 * [Clase 4. Categorías, porcentajes y gráficos de barra.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase4/Clase4.html)
+* [Clase 5. Muestreo (Solo teórica).](https://drive.google.com/drive/folders/1ofOAOsYTy83UvwIZKOsvOuhJ_OsVGnlh?usp=share_link)
+* [Clase 6. Rangos de error y niveles de confianza.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase6/Clase6.html)
 * [SIGUIENTES CLASES PENDIENTES]
+
 
 ## 🔗 Link al drive del curso
 https://drive.google.com/drive/folders/1H82rzCpWWJvTaZK0eS9GHm7pNbhCI5g0?usp=sharing
