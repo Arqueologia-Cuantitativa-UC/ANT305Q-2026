@@ -1,0 +1,119 @@
+# Clase 6. Estimación de parámetros e intervalos de confianza.
+
+# 1. Cargar paquetes. -----------------------------------------------------
+# En esta clase utilizaremos ggplot2 (incluido en tidyverse), readxl para importar los datos, y el paquete plotrix, que incluye la función std.error() para calcular el error estándar de forma directa.
+
+# Instalar paquetes nuevos (solo la primera vez)
+install.packages("plotrix")
+
+# Cargar paquetes cada vez que abrimos una sesión nueva
+library(tidyverse)
+library(readxl)
+library(plotrix)
+
+
+# 2. Ejercicio 1: Intervalo de confianza para el alto de cuello cerámico. -
+# Usted trabaja con una muestra aleatoria de vasos cerámicos. El alto de cuello de los vasos cerámicos se encuentra en el archivo Alto_cuello_ceramica.xlsx. Calcule el alto de cuello (cm) medio (promedio) y desviación estándar de la muestra. Además, proporcione un rango de error para este estimativo al nivel de confianza del 95%.
+
+# 2.1. Importar y explorar los datos.
+
+alto_cuello <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase6/Alto_cuello_ceramica.xlsx")
+alto_cuello
+
+# Exploramos la distribución de los datos con un histograma y un boxplot.
+
+ggplot(data = alto_cuello, aes(x = Alto, fill = Sitio)) +
+  geom_histogram() +
+  labs(x = "Alto de cuello (cm)", y = "Frecuencia", title = "Alto de cuello cerámico") +
+  theme_classic()
+
+ggplot(data = alto_cuello, aes(x = Sitio, y = Alto, fill = Sitio)) +
+  geom_boxplot() +
+  labs(x = "Sitio", y = "Alto de cuello (cm)", title = "Alto de cuello cerámico por sitio") +
+  theme_classic()
+
+# 2.2. Calcular media y desviación estándar.
+
+summary(alto_cuello$Alto)
+mean(alto_cuello$Alto)
+sd(alto_cuello$Alto)
+
+# La media es de 4.7 cm y la desviación estándar de 1.55 cm.
+
+# 2.3. Calcular el error estándar.
+# El error estándar es la desviación estándar dividida por la raíz cuadrada del tamaño muestral n. Primero calculamos n con la función length().
+
+# Contamos el n de la muestra
+length(alto_cuello$Alto)
+
+# Fórmula manual del error estándar
+1.55 / sqrt(78)
+
+# El resultado es 0.18. Podemos verificarlo usando directamente la función std.error() del paquete plotrix.
+std.error(alto_cuello$Alto)
+
+# Ambos métodos entregan el mismo resultado: error estándar = 0.18.
+
+# 2.4. Calcular el rango de error al 95% de confianza.
+# Para calcular el rango de error debemos multiplicar el error estándar por el valor t correspondiente. Buscamos en la tabla t el valor para 77 grados de libertad (n - 1 = 78 - 1) y un 95% de confianza. Lo más cercano a 77 en la tabla es 60, donde el valor t es 2.00.
+
+0.18 * 2.00
+
+# El rango de error es 0.36. Podemos concluir con un 95% de confianza que la media poblacional del alto de cuello de vaso cerámico es de 4.7 ± 0.36 cm.
+
+
+# 3. Ejercicio 2: Cálculo del tamaño de muestra necesario. ----------------
+# Usted quiere calcular el largo medio de punta de proyectil de un sitio altiplánico con un rango de error de ± 0.8 mm a un nivel de confianza del 99%. Se sabe a partir de estudios previos que la desviación estándar para estos largos es de aproximadamente 1.2 mm. ¿Qué tamaño de muestra necesitará?
+
+# Para calcular el tamaño de muestra aplicamos la fórmula: (desviación estándar × t / rango de error)². Como no conocemos n, los grados de libertad serían infinitos, por lo que buscamos en la tabla t el valor correspondiente a ∞ y 99% de confianza, que es 2.576.
+
+(1.2 * 2.576 / 0.8)^2
+
+# Se necesitaría recolectar 15 puntas de proyectil.
+
+
+# 4. Ejercicio 3: Intervalo de confianza con corrector de poblaciones finitas. ----
+# Usted selecciona una muestra aleatoria de 33 instrumentos de hueso de un total de 60 instrumentos de hueso excavados en un sitio costero. ¿Cuál sería el ancho medio de los 60 instrumentos en base a la muestra de 33, incluyendo rango de error a un nivel de confianza del 95%?
+
+# 4.1. Importar y explorar los datos.
+
+ancho_hueso <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase6/Ancho_instrumento_hueso.xlsx")
+ancho_hueso
+
+ggplot(data = ancho_hueso, aes(x = Ancho, fill = Sitio)) +
+  geom_histogram() +
+  labs(x = "Ancho (mm)", y = "Frecuencia", title = "Ancho de instrumentos de hueso") +
+  theme_classic()
+
+ggplot(data = ancho_hueso, aes(x = Sitio, y = Ancho, fill = Sitio)) +
+  geom_boxplot() +
+  labs(x = "Sitio", y = "Ancho (mm)", title = "Ancho de instrumentos de hueso por sitio") +
+  theme_classic()
+
+# 4.2. Calcular media y desviación estándar.
+
+mean(ancho_hueso$Ancho)
+sd(ancho_hueso$Ancho)
+
+# La media de la muestra es 20.5 mm y la desviación estándar es 1.7 mm.
+
+# 4.3. Calcular el error estándar con corrector de poblaciones finitas.
+# Cuando la muestra representa una proporción importante de la población total (más del 5%), debemos aplicar un corrector de poblaciones finitas. La fórmula es: (desv. est. / √n) × √(1 - n/N), donde n es el tamaño de la muestra y N el tamaño total de la población.
+
+# n = 33, N = 60
+1.7 / sqrt(33) * sqrt(1 - 33/60)
+
+# El error estándar corregido es 0.2. Buscamos en la tabla t el valor para 32 grados de libertad (n - 1 = 33 - 1) y 95% de confianza. Lo más cercano a 32 es 30, donde el valor t es 2.042.
+
+0.2 * 2.042
+
+# El rango de error es 0.41. Podemos concluir con un 95% de confianza que el ancho medio de los 60 instrumentos de hueso de la población es de 20.5 ± 0.41 mm.
+
+
+# 5. Trabajo en Clases 6. -------------------------------------------------
+
+# 1. Una investigadora estudia el grosor de paredes de vasijas de un sitio alfarero. Recolecta una muestra aleatoria de 45 fragmentos. La media del grosor es de 7.3 mm y la desviación estándar es de 2.1 mm. Calcule el rango de error para la media al 95% de confianza.
+
+# 2. Un investigador quiere estimar el largo medio de láminas líticas de un sitio precerámico con un rango de error de ± 1.5 mm y un nivel de confianza del 95%. A partir de colecciones comparativas se sabe que la desviación estándar es de aproximadamente 4.2 mm. ¿Qué tamaño de muestra necesitará?
+
+# 3. Se selecciona una muestra aleatoria de 25 cráneos de un total de 80 cráneos recuperados en un cementerio prehispánico. La media del diámetro máximo craneal de la muestra es de 178.4 mm y la desviación estándar es de 6.8 mm. Calcule el rango de error para la media al 99% de confianza aplicando el corrector de poblaciones finitas.
