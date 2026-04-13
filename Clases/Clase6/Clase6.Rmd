@@ -170,7 +170,7 @@ El rango de error es 0.41. Podemos concluir con un 95% de confianza que el ancho
 
 <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
   
-  <a href="../Clase5/Clase5.html" class="btn btn-default">← Clase Anterior</a>
+  <a href="../Clase4/Clase4.html" class="btn btn-default">← Clase Anterior</a>
   <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
   <a href="../Clase7/Clase7.html" class="btn btn-default">Siguiente Clase →</a>
 
