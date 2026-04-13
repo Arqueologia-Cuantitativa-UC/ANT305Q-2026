@@ -123,6 +123,6 @@ Para esta actividad trabajaremos con las bases de datos `Liticos.xlsx` y `Largo 
   
   <a href="../Clase3/Clase3.html" class="btn btn-default">← Clase Anterior</a>
   <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
-  <a href="../Clase5/Clase5.html" class="btn btn-default">Siguiente Clase →</a>
+  <a href="../Clase6/Clase6.html" class="btn btn-default">Siguiente Clase →</a>
 
 </div>
