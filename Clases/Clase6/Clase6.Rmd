@@ -1,5 +1,5 @@
 ---
-title: "Clase 6. Estimación de parámetros e intervalos de confianza."
+title: "Clase 6. Rangos de error y niveles de confianza."
 output: 
   html_document:
     toc: true
