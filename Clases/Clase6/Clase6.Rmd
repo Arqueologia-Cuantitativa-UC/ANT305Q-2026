@@ -58,7 +58,7 @@ mean(alto_cuello$Alto)
 sd(alto_cuello$Alto)
 ```
 
-La media es de 4.7 cm y la desviación estándar de 1.55 cm.
+La media es de 4.70 cm y la desviación estándar de 1.55 cm.
 
 ##### **2.3. Calcular el error estándar.**
 
@@ -88,7 +88,7 @@ Para calcular el rango de error debemos multiplicar el error estándar por el va
 0.18 * 2.00
 ```
 
-El rango de error es 0.36. Podemos concluir con un 95% de confianza que la media poblacional del alto de cuello de vaso cerámico es de **4.7 ± 0.36 cm**.
+El rango de error es 0.36. Podemos concluir con un 95% de confianza que la media poblacional del alto de cuello de vaso cerámico es de **4.70 ± 0.36 cm**.
 
 ---
 
