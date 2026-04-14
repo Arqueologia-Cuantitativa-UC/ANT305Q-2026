@@ -108,12 +108,3 @@ sd(ancho_hueso$Ancho)
 0.2 * 2.042
 
 # El rango de error es 0.41. Podemos concluir con un 95% de confianza que el ancho medio de los 60 instrumentos de hueso de la población es de 20.5 ± 0.41 mm.
-
-
-# 5. Trabajo en Clases 6. -------------------------------------------------
-
-# 1. Una investigadora estudia el grosor de paredes de vasijas de un sitio alfarero. Recolecta una muestra aleatoria de 45 fragmentos. La media del grosor es de 7.3 mm y la desviación estándar es de 2.1 mm. Calcule el rango de error para la media al 95% de confianza.
-
-# 2. Un investigador quiere estimar el largo medio de láminas líticas de un sitio precerámico con un rango de error de ± 1.5 mm y un nivel de confianza del 95%. A partir de colecciones comparativas se sabe que la desviación estándar es de aproximadamente 4.2 mm. ¿Qué tamaño de muestra necesitará?
-
-# 3. Se selecciona una muestra aleatoria de 25 cráneos de un total de 80 cráneos recuperados en un cementerio prehispánico. La media del diámetro máximo craneal de la muestra es de 178.4 mm y la desviación estándar es de 6.8 mm. Calcule el rango de error para la media al 99% de confianza aplicando el corrector de poblaciones finitas.
