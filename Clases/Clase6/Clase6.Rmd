@@ -153,7 +153,7 @@ El error estándar corregido es 0.2. Buscamos en la tabla `t` el valor para 32 g
 0.2 * 2.042
 ```
 
-El rango de error es 0.41. Podemos concluir con un 95% de confianza que el ancho medio de los 60 instrumentos de hueso de la población es de **20.5 ± 0.41 mm**.
+El rango de error es 0.41. Podemos concluir con un 95% de confianza que el ancho medio de los 60 instrumentos de hueso de la población es de **20.5 ± 0.4 mm**.
 
 ---
 
