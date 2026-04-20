@@ -31,6 +31,7 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 4. Categorías, porcentajes y gráficos de barra.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase4/Clase4.html)
 * [Clase 5. Muestreo (Solo teórica).](https://drive.google.com/drive/folders/1ofOAOsYTy83UvwIZKOsvOuhJ_OsVGnlh?usp=share_link)
 * [Clase 6. Rangos de error y niveles de confianza.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase6/Clase6.html)
+* [Clase 7. Prueba t de Student.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase7/Clase7.html)
 * [SIGUIENTES CLASES PENDIENTES]
 
 
