@@ -83,7 +83,7 @@ ggplot(data = quillagua, aes(x = Sector, y = d15N, fill = Sector)) +
   geom_boxplot() +
   scale_y_continuous(limits = c(0, 30)) +
   scale_fill_manual(values = c("gold", "orange")) +
-  labs(x = "Sector", y = "δ¹⁵N", title = "Isótopos de nitrógeno sectores Alto y Bajo Quillagua") +
+  labs(x = "Sector", y = "d15N", title = "Isótopos de nitrógeno sectores Alto y Bajo Quillagua") +
   theme_classic()
 ```
 
