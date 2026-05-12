@@ -68,7 +68,7 @@ ggplot(data = cultivos, aes(x = Periodo, y = d15N, fill = Periodo)) +
   geom_boxplot() +
   scale_fill_manual(values = c("lightgreen", "aquamarine3", "darkolivegreen3", "darkgreen")) +
   scale_y_continuous(limits = c(-5, 35), breaks = seq(-5, 35, 5)) +
-  labs(x = "Período", y = "δ¹⁵N", title = "δ¹⁵N en cultivos a lo largo del tiempo") +
+  labs(x = "Período", y = "δ15N", title = "δ15N en cultivos a lo largo del tiempo") +
   theme_bw()
 
 # 4.2. Correr el ANOVA.
