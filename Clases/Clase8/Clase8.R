@@ -55,7 +55,7 @@ TukeyHSD(anova_iris)
 
 # 4.1. Importar y explorar los datos.
 
-cultivos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase8/Nitrogeno_cultivos.xlsx")
+cultivos <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase8/Nitrogeno_cultivos.xls")
 cultivos
 
 # Antes de graficar, ordenamos los períodos cronológicamente usando la función factor(). Sin esto, R los ordenaría alfabéticamente.
