@@ -83,7 +83,6 @@ TukeyHSD(anova_cultivos)
 # 4.4. Interpretación.
 # ¿Podemos rechazar la hipótesis nula? ¿Entre qué períodos existen diferencias significativas según el test de Tukey? ¿Qué podría indicar esto sobre los cambios en las prácticas agrícolas a lo largo del tiempo?
 
-
 # 5. Trabajo en Clases 8. -------------------------------------------------
 # Utilizaremos la base de datos palmerpenguins, que contiene medidas morfológicas de tres especies de pingüinos de las Islas Palmer en la Antártida.
 
