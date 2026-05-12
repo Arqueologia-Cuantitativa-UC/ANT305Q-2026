@@ -49,7 +49,6 @@ TukeyHSD(anova_iris)
 # 3.4. Interpretación.
 # ¿Podemos rechazar la hipótesis nula? ¿Qué nos indica el test de Tukey sobre cuáles especies tienen diferencias significativas entre sí?
 
-
 # 4. Ejercicio 2: Isótopos de nitrógeno en cultivos a través del tiempo. --
 # Compararemos los valores de d15N en cultivos arqueológicos de cuatro períodos distintos: Formativo, Período Intermedio Tardío, Período Tardío y Período Colonial.
 
