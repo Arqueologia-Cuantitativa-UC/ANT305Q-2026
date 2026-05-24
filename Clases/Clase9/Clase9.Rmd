@@ -1,0 +1,241 @@
+---
+title: "Clase 9. Tests no paramétricos."
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    theme: united
+---
+
+#### **1. Cargar paquetes.**
+
+```{r, eval=FALSE}
+# Instalar paquetes nuevos (solo la primera vez)
+install.packages("dunn.test")
+install.packages("palmerpenguins")
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+library(dunn.test)
+library(palmerpenguins)
+```
+
+---
+
+#### **2. Tests paramétricos y no paramétricos.**
+
+Hasta ahora hemos utilizado pruebas estadísticas **paramétricas** (test t, ANOVA), que asumen que los datos siguen una distribución normal. Sin embargo, en arqueología frecuentemente trabajamos con muestras pequeñas o datos que no cumplen este supuesto. En esos casos debemos recurrir a pruebas **no paramétricas**, que no asumen ninguna distribución particular.
+
+Para decidir qué test usar, primero evaluamos la normalidad de los datos con el **test de Shapiro-Wilk** (`shapiro.test()`). La lógica es:
+
+- Si **p > 0.05** → los datos distribuyen normal → usamos test paramétrico (t test o ANOVA).
+- Si **p < 0.05** → los datos **no** distribuyen normal → usamos test no paramétrico.
+
+Los equivalentes no paramétricos son:
+
+| Situación | Paramétrico | No paramétrico |
+|---|---|---|
+| Comparar 2 grupos | t test | Mann-Whitney (`wilcox.test`) |
+| Comparar 3+ grupos | ANOVA | Kruskal-Wallis (`kruskal.test`) + Dunn (`dunn.test`) |
+
+---
+
+#### **3. Ejercicio 1: Dieta de camélidos en Tarapacá 40 y Caleta Vítor.**
+
+Evaluamos si existen diferencias en los isótopos de nitrógeno (δ15N) entre camélidos del sitio interior Tarapacá 40 (Tr40) y el sitio costero Caleta Vítor (CV).
+
+##### **3.1. Importar y explorar los datos.**
+
+```{r}
+camelidos_sitios <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase9/Comparacion_Tr40_CV.xlsx")
+camelidos_sitios
+```
+
+```{r}
+ggplot(data = camelidos_sitios, aes(x = Sitio, y = d15N, fill = Sitio)) +
+  geom_boxplot() +
+  labs(x = "Sitio", y = "δ15N", title = "δ15N en camélidos de Tr40 y Caleta Vítor") +
+  theme_classic()
+```
+
+##### **3.2. Test de normalidad Shapiro-Wilk.**
+
+```{r}
+shapiro.test(camelidos_sitios$d15N)
+```
+
+El valor p es mayor a 0.05, por lo que los datos distribuyen normal. Procedemos con un test t.
+
+##### **3.3. Test t.**
+
+```{r}
+t.test(d15N ~ Sitio, data = camelidos_sitios)
+```
+
+##### **3.4. Interpretación.**
+
+¿Podemos rechazar la hipótesis nula? ¿Existen diferencias significativas en la dieta de los camélidos entre ambos sitios? ¿A qué podría deberse esto?
+
+---
+
+#### **4. Ejercicio 2: Largo de maíces en Tarapacá.**
+
+Evaluamos si existen diferencias en el largo de los maíces entre los sitios TR40 y TR49.
+
+##### **4.1. Importar y explorar los datos.**
+
+```{r}
+maices <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase9/Largo_maices.xlsx")
+maices
+```
+
+```{r}
+ggplot(data = maices, aes(x = Sitio, y = Largo, fill = Sitio)) +
+  geom_boxplot() +
+  labs(x = "Sitio", y = "Largo (mm)", title = "Largo de maíces en TR40 y TR49") +
+  theme_classic()
+```
+
+##### **4.2. Test de normalidad Shapiro-Wilk.**
+
+```{r}
+shapiro.test(maices$Largo)
+```
+
+El valor p es menor a 0.05, por lo que los datos **no** distribuyen normal. Debemos usar un test no paramétrico para dos grupos independientes: el test de Mann-Whitney (`wilcox.test`).
+
+##### **4.3. Test de Mann-Whitney.**
+
+```{r}
+wilcox.test(Largo ~ Sitio, data = maices)
+```
+
+##### **4.4. Interpretación.**
+
+¿Podemos rechazar la hipótesis nula? ¿Existen diferencias significativas en el largo de los maíces entre ambos sitios? ¿A qué podría deberse esto?
+
+---
+
+#### **5. Ejercicio 3: Dieta humana en la costa en tres períodos.**
+
+Evaluamos si existen diferencias en los isótopos de nitrógeno (δ15N) en humanos costeros a lo largo de tres períodos: Formativo, Intermedio Tardío y Tardío.
+
+##### **5.1. Importar y explorar los datos.**
+
+```{r}
+dieta_costa <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase9/Dieta_humanos_costa.xlsx")
+dieta_costa
+```
+
+```{r}
+ggplot(data = dieta_costa, aes(x = Periodo, y = d15N, fill = Periodo)) +
+  geom_boxplot() +
+  labs(x = "Período", y = "δ15N", title = "δ15N en humanos costeros por período") +
+  theme_classic()
+```
+
+##### **5.2. Test de normalidad Shapiro-Wilk.**
+
+```{r}
+shapiro.test(dieta_costa$d15N)
+```
+
+Los datos distribuyen normal (al límite). Tenemos tres grupos, por lo que procedemos con ANOVA.
+
+##### **5.3. ANOVA y test post hoc de Tukey.**
+
+```{r}
+anova_dieta <- aov(d15N ~ Periodo, data = dieta_costa)
+summary(anova_dieta)
+```
+
+```{r}
+TukeyHSD(anova_dieta)
+```
+
+##### **5.4. Interpretación.**
+
+¿Podemos rechazar la hipótesis nula? ¿Existen diferencias significativas entre los períodos? ¿Qué nos indica esto sobre las dietas costeras a lo largo del tiempo?
+
+---
+
+#### **6. Ejercicio 4: Largo de aleta en Palmer Penguins.**
+
+Evaluamos si existen diferencias en el largo de aleta entre las tres especies de pingüinos.
+
+##### **6.1. Explorar los datos.**
+
+```{r}
+penguins
+```
+
+```{r}
+ggplot(data = penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot() +
+  labs(x = "Especie", y = "Largo de aleta (mm)", title = "Largo de aleta por especie de pingüino") +
+  theme_classic()
+```
+
+##### **6.2. Test de normalidad Shapiro-Wilk.**
+
+```{r}
+shapiro.test(penguins$flipper_length_mm)
+```
+
+El valor p es menor a 0.05, por lo que los datos **no** distribuyen normal. Tenemos tres grupos, por lo que usamos el test no paramétrico **Kruskal-Wallis**.
+
+##### **6.3. Test de Kruskal-Wallis.**
+
+```{r}
+kruskal.test(flipper_length_mm ~ species, data = penguins)
+```
+
+##### **6.4. Test post hoc de Dunn.**
+
+Al igual que ANOVA necesita Tukey, Kruskal-Wallis necesita un post hoc para saber específicamente entre qué grupos existen diferencias. Usamos el test de Dunn.
+
+```{r}
+dunn.test(penguins$flipper_length_mm, penguins$species)
+```
+
+##### **6.5. Interpretación.**
+
+¿Podemos rechazar la hipótesis nula? ¿Entre qué especies existen diferencias significativas en el largo de aleta?
+
+---
+
+#### **7. Trabajo en Clases 9.**
+
+Recuerde que siempre debe explorar sus datos con un boxplot antes de realizar cualquier análisis, y evaluar la normalidad con Shapiro-Wilk antes de elegir el test.
+
+Para esta actividad utilizaremos las bases de datos `Diametro_vertebra_pescado.xlsx`, `Triangulo.xlsx`, y las bases de datos `palmerpenguins` e `iris` incluidas en R.
+
+```{r}
+vertebras <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase9/Diametro_vertebra_pescado.xlsx")
+vertebras
+
+triangulo <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase9/Triangulo.xlsx")
+triangulo
+```
+
+1. Analice la base de datos de diámetro de vértebras de pescado. ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
+
+2. Analice la base de datos del área de triángulo mastoides. El cálculo de esta área en el cráneo humano ofrece una oportunidad para estimar el sexo en individuos prehispánicos. ¿Es posible ver una diferencia entre las áreas de triángulo mastoides entre estimaciones de sexo hombre y mujer? ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
+
+3. Compare los datos de peso corporal (`body_mass_g`) de los Palmer Penguins. ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
+
+4. Compare los datos de ancho de sépalo (`Sepal.Width`) de la base de datos `iris`. ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
+
+
+
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+  
+  <a href="../Clase8/Clase8.html" class="btn btn-default">← Clase Anterior</a>
+  <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
+  <a href="../Clase10/Clase10.html" class="btn btn-default">Siguiente Clase →</a>
+
+</div>
