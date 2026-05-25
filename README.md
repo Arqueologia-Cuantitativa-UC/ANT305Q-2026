@@ -32,6 +32,8 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 5. Muestreo (Solo teórica).](https://drive.google.com/drive/folders/1ofOAOsYTy83UvwIZKOsvOuhJ_OsVGnlh?usp=share_link)
 * [Clase 6. Rangos de error y niveles de confianza.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase6/Clase6.html)
 * [Clase 7. Prueba t de Student.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase7/Clase7.html)
+* [Clase 8. ANOVA y test post hoc de Tukey.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase8/Clase8.html)
+* [Clase 9. Tests no paramétricos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase9/Clase9.html)
 * [SIGUIENTES CLASES PENDIENTES]
 
 
