@@ -33,7 +33,7 @@ camelidos_sitios
 
 ggplot(data = camelidos_sitios, aes(x = Sitio, y = d15N, fill = Sitio)) +
   geom_boxplot() +
-  labs(x = "Sitio", y = "δ¹⁵N", title = "δ¹⁵N en camélidos de Tr40 y Caleta Vítor") +
+  labs(x = "Sitio", y = "δ15N", title = "δ15N en camélidos de Tr40 y Caleta Vítor") +
   theme_classic()
 
 # 3.2. Test de normalidad Shapiro-Wilk.
@@ -85,7 +85,7 @@ dieta_costa
 
 ggplot(data = dieta_costa, aes(x = Periodo, y = d15N, fill = Periodo)) +
   geom_boxplot() +
-  labs(x = "Período", y = "δ¹⁵N", title = "δ¹⁵N en humanos costeros por período") +
+  labs(x = "Período", y = "δ15N", title = "δ15N en humanos costeros por período") +
   theme_classic()
 
 # 5.2. Test de normalidad Shapiro-Wilk.
@@ -150,3 +150,4 @@ triangulo
 # 3. Compare los datos de peso corporal (body_mass_g) de los Palmer Penguins. ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
 
 # 4. Compare los datos de ancho de sépalo (Sepal.Width) de la base de datos iris. ¿Cuántas variables hay? ¿Cuál sería su hipótesis nula? Evalúe la normalidad y elija el test correspondiente. ¿Qué puede inferir a partir de los resultados?
+
