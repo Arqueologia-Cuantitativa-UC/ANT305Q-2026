@@ -34,6 +34,7 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 7. Prueba t de Student.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase7/Clase7.html)
 * [Clase 8. ANOVA y test post hoc de Tukey.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase8/Clase8.html)
 * [Clase 9. Tests no paramétricos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase9/Clase9.html)
+* [Clase 10. Chi-cuadrado y V de Cramer.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase10/Clase10.html)
 
 * [SIGUIENTES CLASES PENDIENTES]
 
