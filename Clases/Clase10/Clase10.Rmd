@@ -29,7 +29,7 @@ library(vcd)
 
 La prueba de **chi-cuadrado** (χ²) permite evaluar si existe una asociación estadísticamente significativa entre dos variables **categóricas**. A diferencia de los tests anteriores, aquí no comparamos medias sino frecuencias observadas versus frecuencias esperadas bajo la hipótesis nula de independencia entre las variables.
 
-La **hipótesis nula (H₀)** asume que las dos variables son independientes, es decir, que no existe asociación entre ellas. Si el valor p es menor a 0.05, rechazamos la hipótesis nula y concluimos que sí existe una asociación significativa.
+La **hipótesis nula (H₀)** asume que las variables son independientes, es decir, que no existe asociación entre ellas. Si el valor p es menor a 0.05, rechazamos la hipótesis nula y concluimos que sí existe una asociación significativa.
 
 Sin embargo, el chi-cuadrado solo nos dice si existe o no asociación, no qué tan fuerte es. Para medir la **fuerza de la asociación** usamos la **V de Cramer**, que toma valores entre 0 y 1:
 
