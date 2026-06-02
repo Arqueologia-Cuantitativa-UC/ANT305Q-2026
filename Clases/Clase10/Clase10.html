@@ -1679,94 +1679,10 @@ assocstats(tab2)</code></pre>
 <p>¿Podemos rechazar la hipótesis nula? ¿Existe una asociación entre el
 sector y el estilo de arte rupestre en el Alto Loa? ¿Qué tan fuerte es
 esa asociación según la V de Cramer?</p>
-<hr />
-</div>
-</div>
-<div id="ejercicio-3-estilo-de-arte-rupestre-y-período-en-el-alto-loa." class="section level4">
-<h4><strong>5. Ejercicio 3: Estilo de arte rupestre y período en el Alto
-Loa.</strong></h4>
-<p>Evaluamos si existe una asociación entre el estilo de arte rupestre y
-el período cronológico al que pertenecen los sitios del Alto Loa.</p>
-<div id="importar-y-explorar-los-datos.-1" class="section level5">
-<h5><strong>5.1. Importar y explorar los datos.</strong></h5>
-<pre class="r"><code>periodo_estilo &lt;- read_excel(&quot;~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase10/Periodo_y_estilo.xlsx&quot;)
-periodo_estilo</code></pre>
-<pre><code>## # A tibble: 279 × 2
-##    Periodo Estilo
-##    &lt;chr&gt;   &lt;chr&gt; 
-##  1 Arcaico Kalina
-##  2 Arcaico Kalina
-##  3 Arcaico Kalina
-##  4 Arcaico Kalina
-##  5 Arcaico Kalina
-##  6 Arcaico Kalina
-##  7 Arcaico Kalina
-##  8 Arcaico Kalina
-##  9 Arcaico Kalina
-## 10 Arcaico Kalina
-## # ℹ 269 more rows</code></pre>
-<pre class="r"><code>table(periodo_estilo$Periodo, periodo_estilo$Estilo)</code></pre>
-<pre><code>##                     
-##                      Confluencia Cueva Blanca Kalina Santa Barbara Taira
-##   Arcaico                      0            0     22             0     0
-##   Formativo tardio             0           36      0             0     0
-##   Formativo temprano         120            0      0             0    43
-##   PIT                          0            0      0            58     0</code></pre>
-</div>
-<div id="correr-el-chi-cuadrado.-2" class="section level5">
-<h5><strong>5.2. Correr el chi-cuadrado.</strong></h5>
-<pre class="r"><code>chi3 &lt;- chisq.test(periodo_estilo$Periodo, periodo_estilo$Estilo, correct = FALSE)</code></pre>
-<pre><code>## Warning in chisq.test(periodo_estilo$Periodo, periodo_estilo$Estilo, correct =
-## FALSE): Chi-squared approximation may be incorrect</code></pre>
-<pre class="r"><code>chi3</code></pre>
-<pre><code>## 
-##  Pearson&#39;s Chi-squared test
-## 
-## data:  periodo_estilo$Periodo and periodo_estilo$Estilo
-## X-squared = 837, df = 12, p-value &lt; 2.2e-16</code></pre>
-<pre class="r"><code>chi3$observed</code></pre>
-<pre><code>##                       periodo_estilo$Estilo
-## periodo_estilo$Periodo Confluencia Cueva Blanca Kalina Santa Barbara Taira
-##     Arcaico                      0            0     22             0     0
-##     Formativo tardio             0           36      0             0     0
-##     Formativo temprano         120            0      0             0    43
-##     PIT                          0            0      0            58     0</code></pre>
-<pre class="r"><code>chi3$expected</code></pre>
-<pre><code>##                       periodo_estilo$Estilo
-## periodo_estilo$Periodo Confluencia Cueva Blanca    Kalina Santa Barbara
-##     Arcaico               9.462366     2.838710  1.734767      4.573477
-##     Formativo tardio     15.483871     4.645161  2.838710      7.483871
-##     Formativo temprano   70.107527    21.032258 12.853047     33.885305
-##     PIT                  24.946237     7.483871  4.573477     12.057348
-##                       periodo_estilo$Estilo
-## periodo_estilo$Periodo     Taira
-##     Arcaico             3.390681
-##     Formativo tardio    5.548387
-##     Formativo temprano 25.121864
-##     PIT                 8.939068</code></pre>
-</div>
-<div id="calcular-la-v-de-cramer.-2" class="section level5">
-<h5><strong>5.3. Calcular la V de Cramer.</strong></h5>
-<pre class="r"><code>tab3 &lt;- table(periodo_estilo$Periodo, periodo_estilo$Estilo)
-assocstats(tab3)</code></pre>
-<pre><code>##                     X^2 df P(&gt; X^2)
-## Likelihood Ratio 616.62 12        0
-## Pearson          837.00 12        0
-## 
-## Phi-Coefficient   : NA 
-## Contingency Coeff.: 0.866 
-## Cramer&#39;s V        : 1</code></pre>
-</div>
-<div id="interpretación.-2" class="section level5">
-<h5><strong>5.4. Interpretación.</strong></h5>
-<p>¿Podemos rechazar la hipótesis nula? ¿Existe una asociación entre el
-período y el estilo de arte rupestre en el Alto Loa? ¿Qué tan fuerte es
-esa asociación según la V de Cramer?</p>
-<hr />
 </div>
 </div>
 <div id="trabajo-en-clases-10." class="section level4">
-<h4><strong>6. Trabajo en Clases 10.</strong></h4>
+<h4><strong>5. Trabajo en Clases 10.</strong></h4>
 <p>Para esta actividad utilizaremos la base de datos
 <code>caries.xlsx</code>. Puedes encontrarla en el repositorio del
 curso.</p>

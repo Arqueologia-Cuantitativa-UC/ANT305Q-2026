@@ -92,35 +92,7 @@ assocstats(tab2)
 # 4.4. Interpretación.
 # ¿Podemos rechazar la hipótesis nula? ¿Existe una asociación entre el sector y el estilo de arte rupestre en el Alto Loa? ¿Qué tan fuerte es esa asociación según la V de Cramer?
 
-
-# 5. Ejercicio 3: Estilo de arte rupestre y período en el Alto Loa. -------
-# Evaluamos si existe una asociación entre el estilo de arte rupestre y el período cronológico al que pertenecen los sitios del Alto Loa.
-
-# 5.1. Importar y explorar los datos.
-
-periodo_estilo <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase10/Periodo_y_estilo.xlsx")
-periodo_estilo
-
-table(periodo_estilo$Periodo, periodo_estilo$Estilo)
-
-# 5.2. Correr el chi-cuadrado.
-
-chi3 <- chisq.test(periodo_estilo$Periodo, periodo_estilo$Estilo, correct = FALSE)
-chi3
-
-chi3$observed
-chi3$expected
-
-# 5.3. Calcular la V de Cramer.
-
-tab3 <- table(periodo_estilo$Periodo, periodo_estilo$Estilo)
-assocstats(tab3)
-
-# 5.4. Interpretación.
-# ¿Podemos rechazar la hipótesis nula? ¿Existe una asociación entre el período y el estilo de arte rupestre en el Alto Loa? ¿Qué tan fuerte es esa asociación según la V de Cramer?
-
-
-# 6. Trabajo en Clases 10. ------------------------------------------------
+# 5. Trabajo en Clases 10. ------------------------------------------------
 
 caries <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase10/caries.xlsx")
 caries
