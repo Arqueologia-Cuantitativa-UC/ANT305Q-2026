@@ -25,7 +25,6 @@ library(vcd)
 # 3. Ver valores observados y esperados: chi$observed / chi$expected
 # 4. Calcular la V de Cramer: assocstats(tab)
 
-
 # 3. Ejercicio 1: Tipo de momificación y sitio. ---------------------------
 # Queremos evaluar si existe una asociación entre el tipo de momificación y el sitio de procedencia. En el sitio Morro 1 hay 31 momias tipo Negra, 19 tipo Roja y 22 con Vendaje. En el sitio Playa Miller hay 5 tipo Negra, 40 tipo Roja y 7 con Vendaje.
 
