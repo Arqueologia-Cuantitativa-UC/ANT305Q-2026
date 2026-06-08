@@ -1,0 +1,293 @@
+---
+title: "Clase 11. Regresión Lineal."
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    theme: united
+---
+
+#### **1. Cargar paquetes.**
+
+En esta clase utilizaremos `ggplot2` (incluido en `tidyverse`) y `readxl` para importar los datos.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+---
+
+#### **2. La regresión lineal.**
+
+La regresión lineal es un análisis estadístico que permite examinar si existe una relación entre dos variables continuas, donde se asume que una variable influencia los valores de la otra. Es decir, evalúa **causalidad**.
+
+En este modelo, una variable se denomina **independiente** (X), cuyos valores no dependen de ninguna otra variable del modelo, y se representa en el eje horizontal del gráfico de dispersión. La segunda variable se denomina **dependiente** (Y), cuyos valores están en algún grado determinados por X, y se representa en el eje vertical.
+
+La ecuación de regresión lineal tiene la forma general:
+
+$$Y = bX + a$$
+
+Donde:
+
+- **b** es el coeficiente de X (pendiente de la recta): indica la dirección e intensidad de la relación entre variables.
+- **a** es el intercepto: corresponde al valor de Y cuando X = 0, es decir, el punto donde la recta cruza el eje Y.
+
+Para evaluar el modelo se consideran los siguientes valores:
+
+- **Estadístico F y valor p**: evalúan si la relación observada entre las variables es estadísticamente significativa o podría deberse al azar. Si el valor p < 0.05, la relación es significativa.
+- **Coeficiente de determinación r²**: mide la proporción de la variación total en Y que es explicada por X. Su valor oscila entre 0 y 1; valores más cercanos a 1 indican un mejor ajuste del modelo.
+
+En R, la regresión lineal se ajusta con la función `lm()`. Es importante recordar que **la variable dependiente va primero** en la fórmula, seguida de la variable independiente:
+
+```r
+regresion <- lm(formula = variable_dependiente ~ variable_independiente, data = nombre_datos)
+summary(regresion)
+```
+
+---
+
+#### **3. Ejercicio 1: Azadas por área de sitio.**
+
+Se desea evaluar si existe una relación lineal significativa entre el área de sitio en hectáreas (variable independiente) y el número de azadas recuperadas por cada 100 artefactos recolectados (variable dependiente), en sitios arqueológicos del valle del Río Seco.
+
+##### **3.1. Importar y explorar los datos.**
+
+```{r}
+data <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase11/Ejemplo_azadas.xlsx")
+data
+```
+
+Antes de ajustar el modelo, exploramos la distribución de los datos mediante un gráfico de dispersión con `geom_point()`. Este tipo de gráfico permite evaluar visualmente si existe una tendencia lineal entre ambas variables.
+
+```{r}
+ggplot(data = data, aes(x = Area, y = Azadas)) +
+  geom_point() +
+  labs(x = "Área de sitio (ha)", y = "Número de azadas",
+       title = "Azadas por área de sitio") +
+  theme_classic()
+```
+
+##### **3.2. Ajustar el modelo de regresión lineal.**
+
+Se ajusta el modelo de regresión con la función `lm()`, almacenando el resultado en el objeto `regresion`. La función `regresion` entrega directamente los coeficientes del modelo (intercepto y coeficiente de X).
+
+```{r}
+regresion <- lm(formula = Azadas ~ Area, data = data)
+regresion
+```
+
+Para obtener los resultados detallados del análisis —incluyendo el estadístico F, el valor p y el coeficiente de determinación r²— se utiliza la función `summary()`.
+
+```{r}
+summary(regresion)
+```
+
+##### **3.3. Ecuación de regresión.**
+
+En base a los resultados de `summary(regresion)`, se identifican el intercepto (`(Intercept)`) y el coeficiente de X (`Area`). La ecuación de regresión para este caso es:
+
+$$Y = -1.958 \cdot X + 47.802$$
+
+O expresado de forma sustantiva:
+
+$$\text{Azadas} = -1.958 \cdot \text{Área} + 47.802$$
+
+El coeficiente negativo (-1.958) indica una **relación inversa**: a mayor área del sitio, menor es el número de azadas esperado por cada 100 artefactos.
+
+##### **3.4. Predicciones.**
+
+Una vez obtenida la ecuación de regresión, es posible realizar predicciones sobre el valor esperado de Y para un valor determinado de X. Por ejemplo, ¿cuántas azadas se esperan en un sitio con un área de 14.5 ha?
+
+```{r}
+-1.958 * 14.5 + 47.802
+```
+
+En un sitio de 14.5 ha se esperaría recuperar aproximadamente 19.39 azadas por cada 100 artefactos.
+
+##### **3.5. Gráfico con línea de regresión.**
+
+La línea de regresión se puede agregar al gráfico de dispersión utilizando `stat_smooth(method = lm, se = FALSE)`. El argumento `se = FALSE` elimina la banda de confianza del gráfico.
+
+```{r}
+ggplot(data = data, aes(x = Area, y = Azadas)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Área de sitio (ha)", y = "Número de azadas",
+       title = "Azadas por área de sitio") +
+  theme_classic()
+```
+
+Si se desea visualizar también la zona de confianza al 95%, se puede utilizar `level = 0.95` dentro de `stat_smooth()`:
+
+```{r}
+ggplot(data = data, aes(x = Area, y = Azadas)) +
+  geom_point() +
+  stat_smooth(method = lm, level = 0.95) +
+  labs(x = "Área de sitio (ha)", y = "Número de azadas",
+       title = "Azadas por área de sitio con zona de confianza al 95%") +
+  theme_classic()
+```
+
+##### **3.6. Interpretación.**
+
+El análisis de regresión lineal indica que existe una relación lineal negativa y estadísticamente significativa entre el área del sitio y el número de azadas (F = 13.81, p = 0.003). La ecuación de regresión obtenida es Y = -1.958X + 47.802, lo que indica que a medida que aumenta el área del sitio en una hectárea, el número de azadas disminuye en 1.958 unidades. El coeficiente de determinación r² = 0.535 señala que el 53.5% de la variación en el número de azadas se explica por el área del sitio. Desde una perspectiva arqueológica, este resultado puede interpretarse como una mayor diversidad de actividades o una menor especialización en la producción agrícola en los sitios de mayor tamaño, donde las azadas representarían una fracción más pequeña del conjunto artefactual total.
+
+---
+
+#### **4. Ejercicio 2: Peso de puntas de proyectil por largo.**
+
+Se desea evaluar si existe una relación lineal significativa entre el largo de puntas de proyectil en centímetros (variable independiente) y su peso en gramos (variable dependiente).
+
+##### **4.1. Importar y explorar los datos.**
+
+```{r}
+data1 <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase11/Puntas_proyectil.xlsx")
+data1
+```
+
+```{r}
+ggplot(data = data1, aes(x = Largo, y = Peso)) +
+  geom_point() +
+  labs(x = "Largo (cm)", y = "Peso (gr)",
+       title = "Peso de puntas de proyectil por largo") +
+  theme_classic()
+```
+
+##### **4.2. Ajustar el modelo de regresión lineal.**
+
+```{r}
+regresion1 <- lm(formula = Peso ~ Largo, data = data1)
+regresion1
+```
+
+```{r}
+summary(regresion1)
+```
+
+##### **4.3. Ecuación de regresión.**
+
+En este caso, el intercepto presenta un valor negativo. La ecuación de regresión es:
+
+$$Y = 1.631 \cdot X - 2.190$$
+
+O expresado de forma sustantiva:
+
+$$\text{Peso} = 1.631 \cdot \text{Largo} - 2.190$$
+
+El coeficiente positivo (1.631) indica una **relación directa**: a mayor largo de la punta, mayor es su peso esperado.
+
+##### **4.4. Predicciones.**
+
+¿Cuánto pesará una punta de proyectil con un largo de 3 cm?
+
+```{r}
+1.631 * 3 - 2.190
+```
+
+Una punta de proyectil con 3 cm de largo tendría un peso esperado de aproximadamente 2.70 gr.
+
+##### **4.5. Gráfico con línea de regresión.**
+
+```{r}
+ggplot(data = data1, aes(x = Largo, y = Peso)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Largo (cm)", y = "Peso (gr)",
+       title = "Peso de puntas de proyectil por largo") +
+  theme_classic()
+```
+
+##### **4.6. Interpretación.**
+
+El análisis de regresión lineal muestra que existe una relación lineal positiva y estadísticamente significativa entre el largo y el peso de las puntas de proyectil (F = 16.20, p = 0.003). La ecuación de regresión obtenida es Y = 1.631X - 2.190, lo que indica que por cada centímetro adicional en el largo de la punta, su peso aumenta en 1.631 gr. El coeficiente de determinación r² = 0.669 señala que el 66.9% de la variación en el peso se explica por el largo de la punta. Arqueológicamente, esta relación morfométrica sugiere una proporcionalidad consistente en la manufactura de estas piezas, lo que podría indicar estandarización tecnológica en su producción, posiblemente asociada a requisitos funcionales específicos relacionados con el peso y tamaño adecuados para la caza o el conflicto.
+
+---
+
+#### **5. Ejercicio 3: Grosor de jarro cerámico por altura.**
+
+Se desea evaluar si existe una relación lineal significativa entre la altura de jarros cerámicos en centímetros (variable independiente) y el grosor de sus paredes en centímetros (variable dependiente).
+
+##### **5.1. Importar y explorar los datos.**
+
+```{r}
+data2 <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase11/Jarro_ceramico.xlsx")
+data2
+```
+
+```{r}
+ggplot(data = data2, aes(x = Altura, y = Grosor)) +
+  geom_point() +
+  labs(x = "Altura (cm)", y = "Grosor (cm)",
+       title = "Grosor de jarro cerámico por altura") +
+  theme_classic()
+```
+
+##### **5.2. Ajustar el modelo de regresión lineal.**
+
+```{r}
+regresion2 <- lm(formula = Grosor ~ Altura, data = data2)
+regresion2
+```
+
+```{r}
+summary(regresion2)
+```
+
+##### **5.3. Ecuación de regresión.**
+
+Al igual que en el ejercicio anterior, el intercepto presenta un valor negativo. La ecuación de regresión es:
+
+$$Y = 0.161 \cdot X - 0.632$$
+
+O expresado de forma sustantiva:
+
+$$\text{Grosor} = 0.161 \cdot \text{Altura} - 0.632$$
+
+El coeficiente positivo (0.161) indica una **relación directa**: a mayor altura del jarro, mayor es el grosor esperado de sus paredes.
+
+##### **5.4. Predicciones.**
+
+¿Cuál será el grosor de un jarro con una altura de 20 cm?
+
+```{r}
+0.161 * 20 - 0.632
+```
+
+Un jarro con una altura de 20 cm tendría un grosor de paredes esperado de aproximadamente 2.59 cm.
+
+##### **5.5. Gráfico con línea de regresión.**
+
+```{r}
+ggplot(data = data2, aes(x = Altura, y = Grosor)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Altura (cm)", y = "Grosor (cm)",
+       title = "Grosor de jarro cerámico por altura") +
+  theme_classic()
+```
+
+##### **5.6. Interpretación.**
+
+El análisis de regresión lineal muestra que existe una relación lineal positiva y altamente significativa entre la altura y el grosor de los jarros cerámicos (F = 53.03, p < 0.001). La ecuación de regresión obtenida es Y = 0.161X - 0.632, lo que indica que por cada centímetro adicional en la altura del jarro, el grosor de sus paredes aumenta en 0.161 cm. El coeficiente de determinación r² = 0.869 señala que el 86.9% de la variación en el grosor se explica por la altura del jarro, lo que representa un ajuste muy alto del modelo. Arqueológicamente, este resultado sugiere la existencia de un patrón tecnológico consistente en la producción alfarera: a medida que se elaboraban piezas de mayor altura, los alfareros aumentaban proporcionalmente el grosor de las paredes, probablemente para garantizar la estabilidad estructural del recipiente y evitar su colapso durante el proceso de manufactura o el uso cotidiano.
+
+---
+
+#### **6. Trabajo en Clases 11.**
+
+Para esta actividad utilizaremos las bases de datos `Lascas_Atacama.xlsx`, `Densidad_artefactual_Mapocho.xlsx` y `Puntas_NISP_Patagonia.xlsx`. Puedes encontrarlas en el repositorio del curso.
+
+1. Durante prospecciones en el desierto de Atacama se registraron 14 sitios con evidencia de talla lítica. Para cada sitio se midió la distancia (km) a la fuente de materia prima más cercana y se contabilizó el número total de lascas de talla recuperadas. Se hipotetiza que a mayor distancia a la fuente de materia prima, mayor es la inversión en reducción del núcleo y, por lo tanto, mayor el número de lascas producidas en el sitio. Importe los datos desde `Lascas_Atacama.xlsx` y evalúe si existe una relación lineal significativa entre la `Distancia` a la fuente de materia prima y el número de `Lascas`. ¿Cuántas lascas se esperaría encontrar en un sitio ubicado a 20 km de la fuente de materia prima? 
+
+2. En el marco de un estudio sobre patrones de asentamiento prehispánico en el valle del río Mapocho, se midió la distancia al cauce del río (km) de 14 sitios arqueológicos y se calculó la densidad artefactual superficial (artefactos/m²) en cada uno de ellos. Se hipotetiza que los sitios más cercanos al río presentan una mayor concentración de material, producto de una mayor intensidad de ocupación en torno al río. Importe los datos desde `Densidad_artefactual_Mapocho.xlsx` y evalúe si existe una relación lineal significativa entre la `Distancia` al río y la `Densidad` artefactual.
+
+3. En 15 sitios cazadores-recolectores de la Patagonia chilena se registró el número de puntas de proyectil recuperadas y la abundancia relativa de fauna expresada como NISP (*Number of Identified Specimens*). Se hipotetiza que una mayor cantidad de puntas de proyectil debería asociarse a una mayor representación faunística en el registro arqueológico, como reflejo de una mayor intensidad de actividades de caza. Importe los datos desde `Puntas_NISP_Patagonia.xlsx` y evalúe si existe una relación lineal significativa entre el número de `Puntas` y el `NISP`. 
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+  
+  <a href="../Clase10/Clase10.html" class="btn btn-default">← Clase Anterior</a>
+  <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
+  <a href="../Clase12/Clase12.html" class="btn btn-default">Siguiente Clase →</a>
+
+</div>
