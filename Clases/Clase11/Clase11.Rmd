@@ -209,7 +209,7 @@ El análisis de regresión lineal muestra que existe una relación lineal positi
 
 Se desea evaluar si existe una relación lineal significativa entre la altura de jarros cerámicos en centímetros (variable independiente) y el grosor de sus paredes en centímetros (variable dependiente).
 
-##### **5.1. Importar y explorar los datos.**
+##### **5.1. Importar y explorar los datos.** 
 
 ```{r}
 data2 <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase11/Jarro_ceramico.xlsx")
