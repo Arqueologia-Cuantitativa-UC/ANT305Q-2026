@@ -78,7 +78,7 @@ regresion <- lm(formula = Azadas ~ Area, data = data)
 regresion
 ```
 
-Para obtener los resultados detallados del análisis —incluyendo el estadístico F, el valor p y el coeficiente de determinación r²— se utiliza la función `summary()`.
+Para obtener los resultados detallados del análisis, incluyendo el estadístico F, el valor p y el coeficiente de determinación r², se utiliza la función `summary()`.
 
 ```{r}
 summary(regresion)
@@ -274,7 +274,7 @@ El análisis de regresión lineal muestra que existe una relación lineal positi
 
 ---
 
-#### **6. Trabajo en Clases 11.**
+#### **6. Trabajo en Clases.**
 
 Para esta actividad utilizaremos las bases de datos `Lascas_Atacama.xlsx`, `Densidad_artefactual_Mapocho.xlsx` y `Puntas_NISP_Patagonia.xlsx`. Puedes encontrarlas en el repositorio del curso.
 
