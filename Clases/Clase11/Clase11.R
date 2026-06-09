@@ -156,7 +156,7 @@ ggplot(data = data2, aes(x = Altura, y = Grosor)) +
 # 5.7. Interpretación.
 # El análisis de regresión lineal muestra que existe una relación lineal positiva y altamente significativa entre la altura y el grosor de los jarros cerámicos (F = 53.03, p < 0.001). La ecuación de regresión obtenida es Y = 0.161X - 0.632, lo que indica que a mayor altura del jarro, mayor es el grosor de sus paredes. El coeficiente de determinación r² = 0.869 indica que el 86.9% de la variación en el grosor se explica por la altura del jarro. Arqueológicamente, este resultado sugiere que existía un patrón tecnológico consistente en la producción alfarera: a medida que se elaboraban piezas más altas, los alfareros aumentaban proporcionalmente el grosor de las paredes, probablemente para garantizar la estabilidad estructural del recipiente.
 
-# 6. Trabajo en Clases 11.
+# 6. Trabajo en Clases.
 
 #Para esta actividad utilizaremos las bases de datos Lascas_Atacama.xlsx, Densidad_artefactual_Mapocho.xlsx y Puntas_NISP_Patagonia.xlsx. Puedes encontrarlas en el repositorio del curso.
 
