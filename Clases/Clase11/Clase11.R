@@ -62,7 +62,7 @@ ggplot(data = data, aes(x = Area, y = Azadas)) +
   theme_classic()
 
 # 3.7. Interpretación.
-# El análisis de regresión lineal indica que existe una relación lineal negativa y estadísticamente significativa entre el área del sitio y el número de azadas (F = 13.81, p = 0.003). La ecuación de regresión obtenida es Y = -1.958X + 47.802, lo que indica que a medida que aumenta el área del sitio, el número de azadas disminuye. El coeficiente de determinación r² = 0.535 indica que el 53.5% de la variación en el número de azadas se explica por el área del sitio. Arqueológicamente, esto puede interpretarse como una mayor diversidad de actividades o una menor especialización en la producción agrícola en los sitios de mayor tamaño.
+# El análisis de regresión lineal indica que existe una relación lineal negativa y estadísticamente significativa entre el área del sitio y el número de azadas (F = 13.81, p = 0.003). La ecuación de regresión obtenida es Y = -1.958X + 47.802 y el coeficiente de determinación r² = 0.535 indica que el 53.5% de la variación en el número de azadas se explica por el área del sitio. Esto puede interpretarse como una mayor diversidad de actividades o una menor especialización en la producción agrícola en los sitios de mayor tamaño.
 
 
 # 4. Ejercicio 2: Peso de puntas de proyectil por largo. ------------------
@@ -108,7 +108,7 @@ ggplot(data = data1, aes(x = Largo, y = Peso)) +
   theme_classic()
 
 # 4.7. Interpretación.
-# El análisis de regresión lineal muestra que existe una relación lineal positiva y estadísticamente significativa entre el largo y el peso de las puntas de proyectil (F = 16.20, p = 0.003). La ecuación de regresión obtenida es Y = 1.631X - 2.190, lo que indica que a mayor largo, mayor será el peso de la punta. El coeficiente de determinación r² = 0.669 indica que el 66.9% de la variación en el peso de las puntas se explica por su largo. Arqueológicamente, esta relación morfométrica sugiere una proporcionalidad consistente en la manufactura de estas piezas, lo que podría indicar estandarización tecnológica en su producción.
+# El análisis de regresión lineal muestra que existe una relación lineal positiva y estadísticamente significativa entre el largo y el peso de las puntas de proyectil (F = 16.20, p = 0.003). La ecuación de regresión obtenida es Y = 1.631X - 2.190 y el coeficiente de determinación r² = 0.669 señala que el 66.9% de la variación en el peso se explica por el largo de la punta. Esta relación morfométrica sugiere una proporcionalidad consistente en la manufactura de estas piezas, lo que podría indicar estandarización tecnológica en su producción, posiblemente asociada a requisitos funcionales específicos relacionados con el peso y tamaño adecuados para la caza.
 
 
 # 5. Ejercicio 3: Grosor de jarro cerámico por altura. --------------------
@@ -154,7 +154,7 @@ ggplot(data = data2, aes(x = Altura, y = Grosor)) +
   theme_classic()
 
 # 5.7. Interpretación.
-# El análisis de regresión lineal muestra que existe una relación lineal positiva y altamente significativa entre la altura y el grosor de los jarros cerámicos (F = 53.03, p < 0.001). La ecuación de regresión obtenida es Y = 0.161X - 0.632, lo que indica que a mayor altura del jarro, mayor es el grosor de sus paredes. El coeficiente de determinación r² = 0.869 indica que el 86.9% de la variación en el grosor se explica por la altura del jarro. Arqueológicamente, este resultado sugiere que existía un patrón tecnológico consistente en la producción alfarera: a medida que se elaboraban piezas más altas, los alfareros aumentaban proporcionalmente el grosor de las paredes, probablemente para garantizar la estabilidad estructural del recipiente.
+# El análisis de regresión lineal muestra que existe una relación lineal positiva y altamente significativa entre la altura y el grosor de los jarros cerámicos (F = 53.03, p < 0.001). La ecuación de regresión obtenida es Y = 0.161X - 0.632 y el coeficiente de determinación r² = 0.869 señala que el 86.9% de la variación en el grosor se explica por la altura del jarro, lo que representa un ajuste muy alto del modelo. Este resultado sugiere la existencia de un patrón tecnológico consistente en la producción alfarera: a medida que se elaboraban piezas de mayor altura, los alfareros aumentaban proporcionalmente el grosor de las paredes, probablemente para garantizar la estabilidad estructural del recipiente y evitar su colapso durante el proceso de manufactura o el uso cotidiano.
 
 # 6. Trabajo en Clases.
 
