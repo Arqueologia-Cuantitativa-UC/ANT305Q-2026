@@ -156,7 +156,7 @@ ggplot(data = data2, aes(x = Altura, y = Grosor)) +
 # 5.7. Interpretación.
 # El análisis de regresión lineal muestra que existe una relación lineal positiva y altamente significativa entre la altura y el grosor de los jarros cerámicos (F = 53.03, p < 0.001). La ecuación de regresión obtenida es Y = 0.161X - 0.632 y el coeficiente de determinación r² = 0.869 señala que el 86.9% de la variación en el grosor se explica por la altura del jarro, lo que representa un ajuste muy alto del modelo. Este resultado sugiere la existencia de un patrón tecnológico consistente en la producción alfarera: a medida que se elaboraban piezas de mayor altura, los alfareros aumentaban proporcionalmente el grosor de las paredes, probablemente para garantizar la estabilidad estructural del recipiente y evitar su colapso durante el proceso de manufactura o el uso cotidiano.
 
-# 6. Trabajo en Clases.
+# 6. Trabajo en Clases. -----------------------------------------------------
 
 #Para esta actividad utilizaremos las bases de datos Lascas_Atacama.xlsx, Densidad_artefactual_Mapocho.xlsx y Puntas_NISP_Patagonia.xlsx. Puedes encontrarlas en el repositorio del curso.
 
@@ -165,3 +165,4 @@ ggplot(data = data2, aes(x = Altura, y = Grosor)) +
 #2. En el marco de un estudio sobre patrones de asentamiento prehispánico en el valle del río Mapocho, se midió la distancia al cauce del río (km) de 14 sitios arqueológicos y se calculó la densidad artefactual superficial (artefactos/m²) en cada uno de ellos. Se hipotetiza que los sitios más cercanos al río presentan una mayor concentración de material, producto de una mayor intensidad de ocupación en torno al río. Importe los datos desde Densidad_artefactual_Mapocho.xlsx y evalúe si existe una relación lineal significativa entre la Distancia al río y la Densidad artefactual.
 
 #3. En 15 sitios cazadores-recolectores de la Patagonia chilena se registró el número de puntas de proyectil recuperadas y la abundancia relativa de fauna expresada como NISP (Number of Identified Specimens). Se hipotetiza que una mayor cantidad de puntas de proyectil debería asociarse a una mayor representación faunística en el registro arqueológico, como reflejo de una mayor intensidad de actividades de caza. Importe los datos desde Puntas_NISP_Patagonia.xlsx y evalúe si existe una relación lineal significativa entre el número de Puntas y el NISP. 
+
