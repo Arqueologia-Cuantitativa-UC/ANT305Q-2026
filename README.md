@@ -36,8 +36,7 @@ También puedes acceder directamente a la versión web de cada clase a través d
 * [Clase 9. Tests no paramétricos.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase9/Clase9.html)
 * [Clase 10. Chi-cuadrado y V de Cramer.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase10/Clase10.html)
 * [Clase 11. Regresión Lineal.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase11/Clase11.html)
-
-* [SIGUIENTES CLASES PENDIENTES]
+* [Clase 12. Correlaciones.](https://arqueologia-cuantitativa-uc.github.io/ANT305Q-2026/Clases/Clase12/Clase12.html)
 
 
 ## 🔗 Link al drive del curso
