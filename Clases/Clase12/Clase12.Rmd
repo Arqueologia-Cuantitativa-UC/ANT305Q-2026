@@ -1,0 +1,238 @@
+---
+title: "Clase 12. Correlaciones."
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    theme: united
+---
+
+#### **1. Cargar paquetes.**
+
+En esta clase utilizaremos `ggplot2` y `readxl` (incluidos en `tidyverse`), además de `ggpubr`, paquete necesario para realizar los tests de correlación.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+library(ggpubr)
+```
+
+---
+
+#### **2. Las correlaciones.**
+
+Una correlación permite evaluar la relación entre dos variables. A diferencia de la regresión lineal, en una correlación **no existe una relación de causalidad o dependencia**: no hay variable dependiente ni independiente, ya que ambas variables se consideran dependientes la una de la otra si es que existe correlación entre ellas.
+
+De esta manera, las correlaciones miden cuánto dos variables **co-varían**, es decir, cuánto cambia una variable cuando cambia la otra, y viceversa.
+
+Existen dos tipos principales de correlación, dependiendo del tipo de variable con la que se trabaje:
+
+- **Correlación de Pearson (r)**: se utiliza cuando ambas variables son **continuas** y presentan una **distribución normal**. También se conoce como coeficiente de correlación producto-momento de Pearson. *Importante: la r de Pearson es distinta al r² visto en regresión lineal.*
+
+- **Correlación de Spearman (rs)**: se utiliza cuando las variables son **categóricas ordinales**, es decir, corresponden a rangos o intervalos.
+
+En ambos casos, el coeficiente de correlación varía en un rango entre **-1 y 1**:
+
+| Valor | Significado |
+|---|---|
+| r = 1 | Correlación positiva perfecta |
+| r ~ 0.7 | Correlación positiva fuerte |
+| r ~ 0.5 | Correlación positiva moderada |
+| r ~ 0.3 | Correlación positiva débil |
+| r = 0 | No existe correlación lineal |
+| r ~ -0.3 | Correlación negativa débil |
+| r ~ -0.5 | Correlación negativa moderada |
+| r ~ -0.7 | Correlación negativa fuerte |
+| r = -1 | Correlación negativa perfecta |
+
+La hipótesis nula (H₀) que se somete a prueba en ambos tests es que **no existe correlación entre las variables estudiadas**. Para evaluar la significancia se calcula un valor p; si este es menor a 0.05, se rechaza la hipótesis nula y se concluye que la correlación observada es estadísticamente significativa.
+
+En R, ambas correlaciones se calculan con la función `cor.test()`, especificando el método correspondiente:
+
+```r
+cor.test(data$variable1, data$variable2, method = "pearson")
+cor.test(data$variable1, data$variable2, method = "spearman")
+```
+
+---
+
+#### **3. Correlación de Pearson.**
+
+##### **3.1. Ejercicio 1: Estatura y largo de húmero.**
+
+¿Existe una correlación entre la estatura (cm) y el largo de húmero (cm) en una muestra de individuos adultos? Ambas son variables continuas, por lo que utilizaremos la **correlación de Pearson**.
+
+###### **3.1.1. Importar y explorar los datos.**
+
+```{r}
+data <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase12/Estatura_humero.xlsx")
+data
+```
+
+Antes de correr el test, exploramos los datos mediante un gráfico de dispersión. Dentro de `geom_point()` podemos definir la forma (`shape`), el color (`color`), el relleno (`fill`) y el tamaño (`size`) de los puntos. La función `theme_bw()` deja el fondo del gráfico en blanco, mientras que `scale_y_continuous()` y `scale_x_continuous()` permiten definir los límites y las marcas de cada eje mediante los argumentos `limits` y `breaks`.
+
+```{r}
+ggplot(data = data, aes(x = Estatura, y = Largo)) +
+  geom_point(shape = 22, color = "blue", fill = "blue", size = 3) +
+  theme_bw() +
+  scale_y_continuous(limits = c(30, 36), breaks = seq(30, 36, 1)) +
+  scale_x_continuous(limits = c(150, 190), breaks = seq(150, 190, 10)) +
+  xlab(expression("Estatura (cm)")) +
+  ylab(expression("Largo de húmero (cm)"))
+```
+
+###### **3.1.2. Correr el test de correlación de Pearson.**
+
+Para realizar el test de correlación se utiliza la función `cor.test()`, indicando las dos variables a comparar separadas por una coma, y especificando `method = "pearson"`.
+
+```{r}
+cor.test(data$Estatura, data$Largo, method = "pearson")
+```
+
+###### **3.1.3. Interpretación.**
+
+El test de correlación de Pearson entrega un valor de **r = 0.67**, lo que corresponde a una correlación positiva fuerte entre la estatura y el largo de húmero. Esta correlación es estadísticamente significativa, con un **p-valor = 0.034** (p < 0.05), por lo que se rechaza la hipótesis nula de no correlación. En otras palabras, a medida que aumenta la estatura de un individuo, tiende a aumentar también el largo de su húmero, relación que resulta consistente con la proporcionalidad esperada entre las dimensiones del esqueleto humano y la talla corporal.
+
+---
+
+##### **3.2. Ejercicio 2: Masa corporal y largo de aleta en pingüinos Gentoo.**
+
+¿Existe una correlación entre la masa corporal (gr) y el largo de aleta (mm) en pingüinos de la especie Gentoo?
+
+###### **3.2.1. Cargar e importar los datos.**
+
+Para este ejercicio utilizaremos el conjunto de datos `palmerpenguins`, que contiene información morfométrica de tres especies de pingüinos de la Antártica.
+
+```{r, message=FALSE, warning=FALSE}
+library(palmerpenguins)
+
+penguins
+```
+
+Revisamos qué especies están disponibles en la base de datos.
+
+```{r}
+penguins %>%
+  count(species)
+```
+
+Para este ejercicio trabajaremos únicamente con la especie **Gentoo**, por lo que filtramos la base de datos y la almacenamos en el objeto `penguins1`.
+
+```{r}
+penguins1 <- penguins %>% filter(species == "Gentoo")
+```
+
+###### **3.2.2. Explorar los datos.**
+
+```{r, warning=FALSE}
+ggplot(data = penguins1, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point(shape = 23, size = 3, color = "red", fill = "red") +
+  theme_bw() +
+  scale_y_continuous(limits = c(200, 230), breaks = seq(200, 230, 10)) +
+  scale_x_continuous(limits = c(4000, 6600), breaks = seq(4000, 6600, 400)) +
+  xlab(expression("Masa corporal (gr)")) +
+  ylab(expression("Largo de aleta (mm)"))
+```
+
+###### **3.2.3. Correr el test de correlación de Pearson.**
+
+```{r}
+cor.test(penguins1$body_mass_g, penguins1$flipper_length_mm, method = "pearson")
+```
+
+###### **3.2.4. Interpretación.**
+
+El test entrega un valor de **r = 0.70**, lo que corresponde a una correlación positiva fuerte entre la masa corporal y el largo de aleta en pingüinos Gentoo. Esta correlación es altamente significativa, con un **p-valor < 0.001** (p < 0.05), por lo que se rechaza la hipótesis nula de no correlación. Esto indica que los individuos de mayor masa corporal tienden a presentar también aletas más largas, lo que es consistente con una relación morfométrica esperable dentro de una misma especie.
+
+---
+
+#### **4. Correlación de Spearman.**
+
+##### **4.1. Ejercicio 3: Productividad de suelo y número de aldeas por km².**
+
+¿Existe una correlación entre la productividad de suelo y el número de aldeas por km²? La productividad de suelo corresponde a una escala ordinal del 1 al 8 (de menor a mayor productividad), por lo que se trata de una **variable categórica ordinal**. En este caso debemos utilizar la **correlación de Spearman**.
+
+###### **4.1.1. Importar y explorar los datos.**
+
+```{r}
+data2 <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase12/Suelo_y_aldeas.xlsx")
+data2
+```
+
+```{r}
+ggplot(data = data2, aes(x = Productividad, y = Aldeas)) +
+  geom_point(shape = 21, color = "violet", fill = "violet", size = 3) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 2.4), breaks = seq(0, 2.4, 0.2)) +
+  scale_x_continuous(limits = c(1, 10), breaks = seq(1, 10, 1)) +
+  xlab(expression("Productividad de suelo")) +
+  ylab(expression("Nº de aldeas por km²"))
+```
+
+###### **4.1.2. Correr el test de correlación de Spearman.**
+
+Para realizar la correlación de Spearman se utiliza también la función `cor.test()`, pero esta vez especificando `method = "spearman"`.
+
+```{r}
+cor.test(data2$Productividad, data2$Aldeas, method = "spearman")
+```
+
+###### **4.1.3. Interpretación.**
+
+El test de correlación de Spearman entrega un valor de **rs = 0.93**, lo que corresponde a una correlación de orden de rango positiva y fuerte entre la productividad de suelo y el número de aldeas por km². Esta correlación es altamente significativa, con un **p-valor < 0.001** (p < 0.05), por lo que se rechaza la hipótesis nula de no correlación. Esto sugiere que las zonas con mayor productividad de suelo presentan también una mayor densidad de aldeas, lo que es coherente con una mayor capacidad de sustento agrícola y, por lo tanto, una mayor concentración de asentamientos.
+
+---
+
+##### **4.2. Ejercicio 4: Status social y número de infantes por familia.**
+
+¿Existe una correlación entre el status social (jerarquía, escala ordinal de 1 a 11) y el número de infantes por familia en un contexto funerario arqueológico? Dado que el status social corresponde a una **variable categórica ordinal**, utilizaremos la **correlación de Spearman**.
+
+###### **4.2.1. Importar y explorar los datos.**
+
+```{r}
+data3 <- read_excel("~/Desktop/work/0_Cuantitativa_2026/ANT305Q-2026/Clases/Clase12/Status_e_infantes.xlsx")
+data3
+```
+
+```{r}
+ggplot(data = data3, aes(x = Status, y = Infantes)) +
+  geom_point(shape = 24, color = "green3", fill = "green3", size = 3) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 15), breaks = seq(0, 15, 1)) +
+  scale_x_continuous(limits = c(1, 11), breaks = seq(1, 11, 1)) +
+  xlab(expression("Status-Jerarquía")) +
+  ylab(expression("Nº de infantes"))
+```
+
+###### **4.2.2. Correr el test de correlación de Spearman.**
+
+```{r}
+cor.test(data3$Status, data3$Infantes, method = "spearman")
+```
+
+###### **4.2.3. Interpretación.**
+
+El test de correlación de Spearman entrega un valor de **rs = 0.84**, lo que corresponde a una correlación de orden de rango positiva y fuerte entre el status social y el número de infantes por familia. Esta correlación es altamente significativa, con un **p-valor = 0.001** (p < 0.05), por lo que se rechaza la hipótesis nula de no correlación. Arqueológicamente, este resultado sugiere que las familias de mayor jerarquía o status social presentan un mayor número de infantes asociados en el registro funerario, lo que podría reflejar diferencias en el acceso a recursos, en las tasas de supervivencia infantil, o en las prácticas de inhumación diferenciadas según el estatus del grupo familiar.
+
+---
+
+#### **5. Trabajo en Clases**
+
+Para esta actividad utilizaremos las bases de datos `Puntas_diametro_peso.xlsx`, `Jerarquia_camelidos.xlsx` y `Pesca_distancia_costa.xlsx`. Puedes encontrarlas en el repositorio del curso.
+
+1. En una colección de 12 puntas de proyectil líticas recuperadas en distintos sitios arqueológicos, se midió el diámetro del astil (mm) y el peso de cada punta (gr). Ambas son variables continuas, por lo que se debe utilizar la correlación de Pearson. Importe los datos desde `Puntas_diametro_peso.xlsx` y evalúe si existe una correlación significativa entre el `Diametro` y el `Peso` de las puntas. Explore los datos primero mediante un gráfico de dispersión, ejecute el test de correlación correspondiente con `cor.test()` y entregue una interpretación arqueológica de los resultados, reportando el valor de r y el p-valor.
+
+2. En 15 entierros de distintos cementerios arqueológicos, se registró la jerarquía social del individuo según la riqueza de su ajuar funerario (escala ordinal de 1 a 5, donde 1 corresponde a la menor riqueza y 5 a la mayor) y el número de camélidos sacrificados asociados al entierro. Dado que la jerarquía corresponde a una variable categórica ordinal, se debe utilizar la correlación de Spearman. Importe los datos desde `Jerarquia_camelidos.xlsx` y evalúe si existe una correlación significativa entre la `Jerarquia` y el número de `Camelidos` sacrificados. Explore los datos primero mediante un gráfico de dispersión, ejecute el test de correlación correspondiente con `cor.test()` y entregue una interpretación arqueológica de los resultados, reportando el valor de rs y el p-valor.
+
+3. En 14 sitios arqueológicos costeros se registró el número de instrumentos de pesca recuperados y la distancia actual del sitio a la línea de costa (m). Se hipotetiza que los sitios más cercanos al mar deberían presentar un mayor número de instrumentos de pesca, dado el acceso más directo a recursos marinos. Ambas variables son continuas, por lo que se debe utilizar la correlación de Pearson. Importe los datos desde `Pesca_distancia_costa.xlsx` y evalúe si existe una correlación significativa entre el número de `Instrumentos` de pesca y la `Distancia` a la costa. Explore los datos primero mediante un gráfico de dispersión, ejecute el test de correlación correspondiente con `cor.test()` y evalúe los resultados: ¿es la correlación significativa? ¿Se cumple la hipótesis planteada? Entregue una interpretación arqueológica de los resultados, reportando el valor de r y el p-valor, y discuta a qué podría deberse este resultado.
+
+---
+
+<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+  
+  <a href="../Clase11/Clase11.html" class="btn btn-default">← Clase Anterior</a>
+  <a href="../../index.html" class="btn btn-default" style="margin: 0 10px;">Índice</a>
+  <a href="../Clase13/Clase13.html" class="btn btn-default">Siguiente Clase →</a>
+
+</div>
