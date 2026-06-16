@@ -36,7 +36,7 @@ En ambos casos, el coeficiente de correlación varía en un rango entre **-1 y 1
 
 | Valor | Significado |
 |---|---|
-| r = 1 | Correlación positiva perfecta |
+| r = 1 |   Correlación positiva perfecta |
 | r ~ 0.7 | Correlación positiva fuerte |
 | r ~ 0.5 | Correlación positiva moderada |
 | r ~ 0.3 | Correlación positiva débil |
